@@ -1,0 +1,27 @@
+<?php get_header(); ?>
+	<main>
+        <!-- breadcrumbs -->
+        <div class="breadcrumbs breadcrumbs--color-reverse layout-breadcrumbs layout-breadcrumbs--large">
+            <div class="breadcrumbs__inner inner">
+                <!-- Breadcrumb NavXT 7.1.0 -->
+                <span>
+                    <a href="./"><span>TOP</span></a>
+                </span>
+                <span>
+                    <span>404</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- section -->
+        <section class="notfound layout-notfound">
+            <div class="notfound__inner inner">
+                <h1 class="notfound__title">404</h1>
+                <p class="notfound__text">申し訳ありません。<br />お探しのページが見つかりません。</p>
+                <div class="notfound__button">
+                    <a href="./" class="button button--color-reverse">Page TOP<span></span></a>
+                </div>
+            </div>
+        </section>
+
+<?php get_footer(); ?>

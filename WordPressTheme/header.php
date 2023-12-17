@@ -6,42 +6,22 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="robots" content="noindex" />
         <!-- meta情報 -->
-        <title>404 - CodeUps</title>
+        <title>CodeUps_gon</title>
         <meta name="description" content="これはディスクリプションです" />
         <meta name="keywords" content="CodeUps、diving" />
-        <!-- ogp -->
-        <meta property="og:title" content="" />
-        <meta property="og:type" content="" />
-        <meta property="og:url" content="" />
-        <meta property="og:image" content="" />
-        <meta property="og:site_name" content="" />
-        <meta property="og:description" content="" />
-        <!-- ファビコン -->
-        <link rel="shortcut icon" href="./assets/images/common/favicon.ico" type="image/x-icon" />
-
-        <!-- google fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Gotu&family=Lato:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
-        <!-- css -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.css" />
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- JavaScript -->
-        <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script defer src="./assets/js/script.js"></script>
+        <link rel="shortcut icon" href="<?php echo get_theme_file_uri(); ?>/assets/images/common/favicon.ico" type="image/x-icon" />
+        <?php wp_head(); ?>
     </head>
+
     <body>
-        <div class="wrap wrap-bg-color">
             <header class="header layout-header js-header">
                 <div class="header__inner">
                     <div class="header__content">
-                        <div class="header__logo">
+                        <h1 class="header__logo">
                             <a href="./">
-                                <img src="./assets/images/common/codeups-logo.svg" alt="CodeUps" />
+                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/codeups-logo.svg" alt="CodeUps" />
                             </a>
-                        </div>
+                        </h1>
                         <nav class="header__nav">
                             <ul class="header__nav-items u-desktop">
                                 <li class="header__nav-item">
@@ -162,111 +142,3 @@
                     </div>
                 </div>
             </header>
-
-            <main>
-                <!-- breadcrumbs -->
-                <div class="breadcrumbs breadcrumbs--color-reverse layout-breadcrumbs layout-breadcrumbs--large">
-                    <div class="breadcrumbs__inner inner">
-                        <!-- Breadcrumb NavXT 7.1.0 -->
-                        <span>
-                            <a href="./"><span>TOP</span></a>
-                        </span>
-                        <span>
-                            <span>404</span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- section -->
-                <section class="notfound layout-notfound">
-                    <div class="notfound__inner inner">
-                        <h1 class="notfound__title">404</h1>
-                        <p class="notfound__text">申し訳ありません。<br />お探しのページが見つかりません。</p>
-                        <div class="notfound__button">
-                            <a href="./" class="button button--color-reverse">Page TOP<span></span></a>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <footer class="footer footer--space js-footer">
-                <div class="footer__inner inner">
-                    <div class="footer__logo-wrap">
-                        <div class="footer__logo">
-                            <a href="./">
-                                <img src="./assets/images/common/codeups-logo.svg" alt="CodeUps" />
-                            </a>
-                        </div>
-                        <div class="footer__sns-icon-wrap">
-                            <a href="#" class="footer__sns-icon" target="_blank" rel="noopener">
-                                <img src="./assets/images/common/FacebookLogo.svg" alt="FacebookLogo" width="24" height="24" loading="lazy" />
-                            </a>
-                            <a href="#" class="footer__sns-icon" target="_blank" rel="noopener">
-                                <img src="./assets/images/common/InstagramLogo.svg" alt="InstagramLogo" width="24" height="24" loading="lazy" />
-                            </a>
-                        </div>
-                    </div>
-                    <nav class="footer__menu global-menu">
-                        <div class="global-menu__left">
-                            <div class="global-menu__wrap">
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="campaign.html">キャンペーン</a></li>
-                                    <li class="global-menu__item"><a href="#">ライセンス取得</a></li>
-                                    <li class="global-menu__item"><a href="#">貸切体験ダイビング</a></li>
-                                    <li class="global-menu__item"><a href="#">ナイトダイビング</a></li>
-                                </ul>
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="about.html">私たちについて</a></li>
-                                </ul>
-                            </div>
-                            <div class="global-menu__wrap">
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="information.html">ダイビング情報</a></li>
-                                    <li class="global-menu__item"><a href="#">ライセンス講習</a></li>
-                                    <li class="global-menu__item"><a href="#">体験ダイビング</a></li>
-                                    <li class="global-menu__item"><a href="#">ファンダイビング</a></li>
-                                </ul>
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="blog.html">ブログ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="global-menu__right global-menu__right--space">
-                            <div class="global-menu__wrap">
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="voice.html">お客様の声</a></li>
-                                </ul>
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="price.html">料金一覧</a></li>
-                                    <li class="global-menu__item"><a href="#">ライセンス講習</a></li>
-                                    <li class="global-menu__item"><a href="#">体験ダイビング</a></li>
-                                    <li class="global-menu__item"><a href="#">ファンダイビング</a></li>
-                                </ul>
-                            </div>
-                            <div class="global-menu__wrap">
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="faq.html">よくある質問</a></li>
-                                </ul>
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head">
-                                        <a href="privacypolicy.html">プライバシー<br class="u-mobile" />ポリシー</a>
-                                    </li>
-                                </ul>
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="terms.html">利用規約</a></li>
-                                </ul>
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="contact.html">お問い合わせ</a></li>
-                                </ul>
-                                <ul class="global-menu__items">
-                                    <li class="global-menu__item-head"><a href="sitemap.html">サイトマップ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                    <small class="footer__copyright">Copyright&nbsp;©&nbsp;2021&nbsp;-&nbsp;2023&nbsp;CodeUps&nbsp;LLC.&nbsp;All&nbsp;Rights&nbsp;Reserved.</small>
-                </div>
-            </footer>
-        </div>
-    </body>
-</html>
