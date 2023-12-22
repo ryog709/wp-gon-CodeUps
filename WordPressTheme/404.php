@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_header('wrap'); ?>
 	<main>
         <!-- breadcrumbs -->
         <div class="breadcrumbs breadcrumbs--color-reverse layout-breadcrumbs layout-breadcrumbs--large">
@@ -24,4 +24,4 @@
             </div>
         </section>
 
-<?php get_footer(); ?>
+<?php get_footer('wrap'); ?>
