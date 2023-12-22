@@ -16,5 +16,35 @@ function my_custom_scripts() {
 
 add_action('wp_enqueue_scripts', 'my_custom_scripts');
 
+function change_post_menu_label_to_blog()
+{
+    global $menu;
+    global $submenu;
+
+    // メニュー名を「ブログ」に変更
+    $menu[5][0] = 'ブログ';
+    $submenu['edit.php'][5][0] = 'ブログ一覧';
+    $submenu['edit.php'][10][0] = '新しいブログ';
+    $submenu['edit.php'][16][0] = 'タグ';
+    // ここまで
+}
+add_action('admin_menu', 'change_post_menu_label_to_blog');
 
 
+function my_setup()
+{
+    add_theme_support('post-thumbnails'); /* アイキャッチ */
+    add_theme_support('automatic-feed-links'); /* RSSフィード */
+    add_theme_support('title-tag'); /* タイトルタグ自動生成 */
+    add_theme_support(
+        'html5',
+        array( /* HTML5のタグで出力 */
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+        )
+    );
+}
+add_action('after_setup_theme', 'my_setup');
