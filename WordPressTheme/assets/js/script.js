@@ -215,6 +215,18 @@ jQuery(function ($) {
     $("#" + number).addClass("is-active");
   });
 
+  //別ページからタブメニューへダイレクトリンク
+  $(document).ready(function () {
+    var hash = window.location.hash;
+    if (hash) {
+      // ハッシュに基づいてタブをアクティブにする
+      $('.js-tab-menu').removeClass('is-active');
+      $('.js-tab-content').removeClass('is-active');
+      $('.js-tab-menu[data-number="' + hash.substring(1) + '"]').addClass('is-active');
+      $(hash).addClass('is-active');
+    }
+  });
+
   // アーカイブアコーディオンメニュー
   $(".js-blog-side-menu-archive-list-item:first .js-blog-side-menu-archive-month-wrap").show();
   $(".js-blog-side-menu-archive-list-item:first .js-archive-accordion").addClass("is-open");
@@ -224,9 +236,8 @@ jQuery(function ($) {
   });
 
   // faqアコーディオンメニュー
-  // 最初のアコーディオンメニューを開く
-  $(".js-faq-question").first().next().slideDown();
-  $(".js-faq-question").first().addClass("is-open");
+  $(".js-faq-question").next().slideDown();
+  $(".js-faq-question").addClass("is-open");
   $(".js-faq-question").on("click", function () {
     $(this).next().slideToggle(600);
     $(this).toggleClass("is-open");

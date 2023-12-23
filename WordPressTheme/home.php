@@ -12,22 +12,12 @@
 	</section>
 
 	<!-- breadcrumbs -->
-	<div class="breadcrumbs layout-breadcrumbs">
-		<div class="breadcrumbs__inner inner">
-			<!-- Breadcrumb NavXT 7.1.0 -->
-			<span>
-				<a href="./"><span>TOP</span></a>
-			</span>
-			<span>
-				<span>ブログ一覧</span>
-			</span>
-		</div>
-	</div>
+	<?php get_template_part('parts/breadcrumbs') ?>
 
 	<!-- blog -->
 	<section class="blog layout-blog">
 		<div class="blog__inner inner">
-			<div class="blog__menu-wrap">
+			<div class="blog__menu-wrap blog-wrap">
 				<article class="blog__main-menu blog-main-menu">
 					<ul class="blog-main-menu__list blog-cards blog-cards--column">
 						<!-- WordPress ループの開始 -->
@@ -68,14 +58,7 @@
 
 					<!-- wp-pagenavi -->
 					<div class="blog__wp-pagenavi wp-pagenavi">
-						<a class="previouspostslink" rel="prev" href="#" aria-label="前のページへ"></a>
-						<span class="current">1</span>
-						<a class="page smaller" href="#">2</a>
-						<a class="page smaller" href="#">3</a>
-						<a class="page smaller" href="#">4</a>
-						<a class="page smaller u-desktop" href="#">5</a>
-						<a class="page larger u-desktop" href="#">6</a>
-						<a class="nextpostslink" rel="next" href="#" aria-label="次のページへ"></a>
+						<?php wp_pagenavi(); ?>
 					</div>
 				</article>
 

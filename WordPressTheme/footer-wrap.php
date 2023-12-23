@@ -7,10 +7,14 @@ $blog = esc_url(home_url('/blog/'));
 $voice = esc_url(home_url('/voice/'));
 $price = esc_url(home_url('/price/'));
 $faq = esc_url(home_url('/faq/'));
-$privacy = esc_url(home_url('/privacypolicy/'));
+$privacypolicy = esc_url(home_url('/privacypolicy/'));
 $terms = esc_url(home_url('/terms/'));
 $contact = esc_url(home_url('/contact/'));
 $sitemap = esc_url(home_url('/sitemap/'));
+// 各タブへのリンク
+$tab1 = $information . '#tab01';
+$tab2 = $information . '#tab02';
+$tab3 = $information . '#tab03';
 ?>
 
 <?php if (!is_404()) : ?>
@@ -90,9 +94,9 @@ $sitemap = esc_url(home_url('/sitemap/'));
                 <div class="global-menu__wrap">
                     <ul class="global-menu__items">
                         <li class="global-menu__item-head"><a href="<?php echo $information; ?>">ダイビング情報</a></li>
-                        <li class="global-menu__item"><a href="#">ライセンス講習</a></li>
-                        <li class="global-menu__item"><a href="#">体験ダイビング</a></li>
-                        <li class="global-menu__item"><a href="#">ファンダイビング</a></li>
+                        <li class="global-menu__item"><a href="<?php echo $tab1; ?>">ライセンス講習</a></li>
+                        <li class="global-menu__item"><a href="<?php echo $tab2; ?>">体験ダイビング</a></li>
+                        <li class="global-menu__item"><a href="<?php echo $tab3; ?>">ファンダイビング</a></li>
                     </ul>
                     <ul class="global-menu__items">
                         <li class="global-menu__item-head"><a href="<?php echo $blog; ?>">ブログ</a></li>

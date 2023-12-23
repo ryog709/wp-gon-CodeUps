@@ -34,28 +34,6 @@
     padding-inline: rem(10);
 }
 
-.wp-pagenavi a:first-child::before,
-.wp-pagenavi a:last-child::after {
-    border-right: 1px solid $green-accent;
-    border-top: 1px solid $green-accent;
-    content: "";
-    display: inline-block;
-    margin-bottom: rem(2);
-    height: 0.7em;
-    width: 0.7em;
-    transition: border-color 0.3s ease-in-out;
-}
-
-.wp-pagenavi a:first-child::before {
-    margin-left: rem(5);
-    transform: rotate(220deg);
-}
-
-.wp-pagenavi a:last-child::after {
-    margin-right: rem(5);
-    transform: rotate(45deg);
-}
-
 .wp-pagenavi a:hover {
     color: $white;
     background-color: $green-accent;

@@ -11,20 +11,7 @@
         </div>
     </section>
     <!-- breadcrumbs -->
-    <div class="breadcrumbs layout-breadcrumbs">
-        <div class="breadcrumbs__inner inner">
-            <!-- Breadcrumb NavXT 7.1.0 -->
-            <span>
-                <a href="<?php echo home_url(); ?>"><span>TOP</span></a>
-            </span>
-            <span>
-                <a href="<?php echo home_url('/contact'); ?>"><span>お問い合わせ</span></a>
-            </span>
-            <span>
-                <span>送信完了</span>
-            </span>
-        </div>
-    </div>
+    <?php get_template_part('parts/breadcrumbs') ?>
 
     <!-- thanks -->
     <div class="thanks layout-thanks">

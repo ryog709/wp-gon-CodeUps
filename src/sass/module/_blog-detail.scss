@@ -23,13 +23,6 @@
     }
 }
 
-.blog-detail__wrap {
-	@include mq("md") {
-        display: flex;
-        gap: rem(86);
-    }
-}
-
 .blog-detail__side-menu {
     margin-top: rem(75);
     @include mq("md") {
