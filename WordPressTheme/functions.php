@@ -16,6 +16,9 @@ function my_custom_scripts() {
 
 add_action('wp_enqueue_scripts', 'my_custom_scripts');
 
+
+
+//投稿ページの編集
 function change_post_menu_label_to_blog()
 {
     global $menu;
@@ -30,7 +33,7 @@ function change_post_menu_label_to_blog()
 }
 add_action('admin_menu', 'change_post_menu_label_to_blog');
 
-
+//アイキャッチ画像編集
 function my_setup()
 {
     add_theme_support('post-thumbnails'); /* アイキャッチ */
@@ -55,45 +58,21 @@ function change_posts_per_page($query)
     if (is_admin() || !$query->is_main_query())
         return;
     if ($query->is_archive('campaign')) { //カスタム投稿タイプを指定
-        $query->set('posts_per_page', '4'); //表示件数を指定
+        $query->set('posts_per_page', '6'); //表示件数を指定
     }
 }
 add_action('pre_get_posts', 'change_posts_per_page');
 
 
-function create_campaign_taxonomy()
-{
-    // カスタムタクソノミーの設定
-    $labels = array(
-        'name'              => _x('キャンペーンカテゴリー', 'taxonomy general name'),
-        'singular_name'     => _x('キャンペーンカテゴリー', 'taxonomy singular name'),
-        // 他のラベルもここに追加できる
-    );
-
-    $args = array(
-        'hierarchical'      => true, // カテゴリーのような階層構造
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => array('slug' => 'campaign_category'),
-    );
-
-    register_taxonomy('campaign_category', array('campaign'), $args);
-}
-add_action('init', 'create_campaign_taxonomy');
-
-// function campaign_category_meta_box()
-// {
-//     add_meta_box('campaign_category_id', 'キャンペーンカテゴリー', 'campaign_category_meta_box_callback', 'campaign', 'side', 'default');
-// }
-// add_action('add_meta_boxes', 'campaign_category_meta_box');
-
-// function campaign_category_meta_box_callback($post)
-// {
-//     // セキュリティのためのNonceフィールド
-//     wp_nonce_field('campaign_category_meta_box', 'campaign_category_meta_box_nonce');
-
-//     // カテゴリーの表示
-//     the_terms($post->ID, 'campaign_category');
-// }
+//SCFでのオプションページ作成
+/**
+ * @param string $page_title ページのtitle属性値
+ * @param string $menu_title 管理画面のメニューに表示するタイトル
+ * @param string $capability メニューを操作できる権限（manage_options とか）
+ * @param string $menu_slug オプションページのスラッグ。ユニークな値にすること。
+ * @param string|null $icon_url メニューに表示するアイコンの URL
+ * @param int $position メニューの位置
+ */
+SCF::add_options_page('', '料金一覧', 'manage_options', 'price-options', 'dashicons-money-alt', '7');
+SCF::add_options_page('', 'ギャラリー', 'manage_options', 'gallery-options', 'dashicons-format-gallery', '8');
+SCF::add_options_page('', 'よくある質問', 'manage_options', 'faq-options', 'dashicons-editor-help', '9');

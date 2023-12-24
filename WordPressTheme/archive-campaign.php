@@ -18,10 +18,11 @@
 	<div class="tag layout-tag">
 		<div class="tag__inner inner">
 			<ul class="tag__list tag-list">
-				<li class="tag-list__item tag-item is-color"><a href="">ALL</a></li>
-				<li class="tag-list__item tag-item"><a href="">ライセンス講習</a></li>
-				<li class="tag-list__item tag-item"><a href="">ファンダイビング</a></li>
-				<li class="tag-list__item tag-item"><a href="">体験ダイビング</a></li>
+				<li class="tag-list__item tag-item is-color"><a href="<?php echo get_post_type_archive_link('campaign') ?>">ALL</a></li>
+				<?php $campaign_terms = get_terms('campaign_category', array('hide_empty' => false)) ?>
+				<?php foreach ($campaign_terms as $campaign_term) : ?>
+					<li class="tag-list__item tag-item"><a href="<?php echo get_term_link($campaign_term, 'campaign_category') ?>"><?php echo $campaign_term->name; ?></a></li>
+				<?php endforeach; ?>
 			</ul>
 		</div>
 	</div>
@@ -30,7 +31,7 @@
 	<section class="campaign-card-contents layout-campaign-card-contents">
 		<div class="campaign-card-contents__inner">
 			<ul class="campaign-card-contents__list campaign-card-list">
-				<?php if (have_posts()) :while (have_posts()) : the_post();?>
+				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						<li class="campaign-card-list__item campaign-card">
 							<figure class="campaign-card__image">
 								<?php if (has_post_thumbnail()) : ?>
@@ -38,32 +39,39 @@
 								<?php endif; ?>
 							</figure>
 							<div class="campaign-card__body campaign-card__body--large-space">
-								<p class="campaign-card__tag"><span><?php the_terms(get_the_ID(), 'campaign_category'); ?></span></p>
+								<p class="campaign-card__tag">
+									<span><?php the_terms(get_the_ID(), 'campaign_category'); ?></span>
+								</p>
 								<h2 class="campaign-card__title campaign-card__title--large"><?php the_title(); ?></h2>
-								<p class="campaign-card__text campaign-card__text--large-space"><?php the_excerpt(); ?></p>
+								<p class="campaign-card__text campaign-card__text--large-space">
+									<?php echo get_post_meta(get_the_ID(), 'campaign_text', true); ?>
+								</p>
 								<div class="campaign-card__price-wrap">
 									<div class="campaign-card__price-sub">
-										<span> ¥<?php echo get_post_meta(get_the_ID(), 'normal_price', true); ?></span>
+										<span><?php echo get_post_meta(get_the_ID(), 'normal_price', true); ?></span>
 									</div>
 									<div class="campaign-card__price-main campaign-card__price-main--large-space">
-										¥<?php echo get_post_meta(get_the_ID(), 'campaign_price', true); ?>
+										<?php echo get_post_meta(get_the_ID(), 'campaign_price', true); ?>
 									</div>
 								</div>
 								<div class="campaign-card__content-wrap u-desktop">
-									<?php echo get_post_meta(get_the_ID(), 'additional_content', true); ?>
+									<p class="campaign-card__content">
+										<?php echo get_post_meta(get_the_ID(), 'additional_content', true); ?>
+									</p>
+									<p class="campaign-card__date">
+										<?php echo get_post_meta(get_the_ID(), 'campaign_period', true); ?>
+									</p>
+									<p class="campaign-card__reserved">
+										<?php echo get_post_meta(get_the_ID(), 'reservation_info', true); ?>
+									</p>
 								</div>
-								<p class="campaign-card__date">
-									<?php echo get_post_meta(get_the_ID(), 'campaign_period', true); ?>
-								</p>
-								<p class="campaign-card__reserved">
-									<?php echo get_post_meta(get_the_ID(), 'reservation_info', true); ?>
-								</p>
 							</div>
 							<div class="campaign-card__button">
 								<a href="<?php the_permalink(); ?>" class="button">詳細を見る<span></span></a>
 							</div>
 						</li>
-				<?php endwhile; endif;?>
+				<?php endwhile;
+				endif; ?>
 			</ul>
 
 			<!-- wp-pagenavi -->

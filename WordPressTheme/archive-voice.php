@@ -17,10 +17,11 @@
 	<div class="tag layout-tag">
 		<div class="tag__inner inner">
 			<ul class="tag__list tag-list">
-				<li class="tag-list__item tag-item is-color"><a href="">ALL</a></li>
-				<li class="tag-list__item tag-item"><a href="">ライセンス講習</a></li>
-				<li class="tag-list__item tag-item"><a href="">ファンダイビング</a></li>
-				<li class="tag-list__item tag-item"><a href="">体験ダイビング</a></li>
+				<li class="tag-list__item tag-item is-color"><a href="<?php echo get_post_type_archive_link('voice') ?>">ALL</a></li>
+				<?php $voice_terms = get_terms('voice_category', array('hide_empty' => false)) ?>
+				<?php foreach ($voice_terms as $voice_term) : ?>
+					<li class="tag-list__item tag-item"><a href="<?php echo get_term_link($voice_term, 'voice_category') ?>"><?php echo $voice_term->name; ?></a></li>
+				<?php endforeach; ?>
 			</ul>
 		</div>
 	</div>
@@ -29,23 +30,26 @@
 	<section class="voice layout-voice">
 		<div class="voice__inner inner">
 			<ul class="voice__cards voice-cards">
-				<?php if (have_posts()) :while (have_posts()) : the_post();?>
+				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						<li class="voice-cards__item voice-card">
 							<div class="voice-card__container">
 								<div class="voice-card__wrap">
 									<div class="voice-card__content">
-										<p class="voice-card__customer">20代(女性)</p>
-										<p class="voice-card__tag">ライセンス講習</p>
+										<p class="voice-card__customer"><?php echo get_post_meta(get_the_ID(), 'voice_customer', true); ?></p>
+										<p class="voice-card__tag"><?php the_terms(get_the_ID(), 'voice_category'); ?></p>
 									</div>
-									<h3 class="voice-card__title">ここにタイトルが入ります。ここにタイトル</h3>
+									<h3 class="voice-card__title"><?php echo get_post_meta(get_the_ID(), 'voice_title', true); ?></h3>
 								</div>
 								<div class="voice-card__img colorbox js-colorbox">
-									<img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/voice-card01.webp" alt="20代(女性)" width="151" height="117" loading="lazy" />
+									<?php if (has_post_thumbnail()) : ?>
+										<img src="<?php echo the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
+									<?php endif; ?>
 								</div>
 							</div>
-							<p class="voice-card__text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />ここにテキストが入ります。ここにテキストが入ります。</p>
+							<p class="voice-card__text"><?php echo get_post_meta(get_the_ID(), 'voice_text', true); ?></p>
 						</li>
-				<?php endwhile; endif; ?>
+				<?php endwhile;
+				endif; ?>
 			</ul>
 		</div>
 
