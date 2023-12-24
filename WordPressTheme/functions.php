@@ -16,6 +16,9 @@ function my_custom_scripts() {
 
 add_action('wp_enqueue_scripts', 'my_custom_scripts');
 
+
+
+//投稿ページの編集
 function change_post_menu_label_to_blog()
 {
     global $menu;
@@ -24,13 +27,13 @@ function change_post_menu_label_to_blog()
     // メニュー名を「ブログ」に変更
     $menu[5][0] = 'ブログ';
     $submenu['edit.php'][5][0] = 'ブログ一覧';
-    $submenu['edit.php'][10][0] = '新しいブログ';
-    $submenu['edit.php'][16][0] = 'タグ';
-    // ここまで
+    $submenu['edit.php'][10][0] = '新規ブログ';
+    $submenu['edit.php'][16][0] = 'ブログタグ';
+    $submenu['edit.php'][15][0] = 'ブログカテゴリー';
 }
 add_action('admin_menu', 'change_post_menu_label_to_blog');
 
-
+//アイキャッチ画像編集
 function my_setup()
 {
     add_theme_support('post-thumbnails'); /* アイキャッチ */
@@ -48,3 +51,28 @@ function my_setup()
     );
 }
 add_action('after_setup_theme', 'my_setup');
+
+//アーカイブの表示件数変更
+function change_posts_per_page($query)
+{
+    if (is_admin() || !$query->is_main_query())
+        return;
+    if ($query->is_archive('campaign')) { //カスタム投稿タイプを指定
+        $query->set('posts_per_page', '6'); //表示件数を指定
+    }
+}
+add_action('pre_get_posts', 'change_posts_per_page');
+
+
+//SCFでのオプションページ作成
+/**
+ * @param string $page_title ページのtitle属性値
+ * @param string $menu_title 管理画面のメニューに表示するタイトル
+ * @param string $capability メニューを操作できる権限（manage_options とか）
+ * @param string $menu_slug オプションページのスラッグ。ユニークな値にすること。
+ * @param string|null $icon_url メニューに表示するアイコンの URL
+ * @param int $position メニューの位置
+ */
+SCF::add_options_page('', '料金一覧', 'manage_options', 'price-options', 'dashicons-money-alt', '7');
+SCF::add_options_page('', 'ギャラリー', 'manage_options', 'gallery-options', 'dashicons-format-gallery', '8');
+SCF::add_options_page('', 'よくある質問', 'manage_options', 'faq-options', 'dashicons-editor-help', '9');
