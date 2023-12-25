@@ -10,7 +10,7 @@
             <h1 class="sub-mv__title">about&nbsp;us</h1>
         </div>
     </section>
-    
+
     <!-- breadcrumbs -->
     <?php get_template_part('parts/breadcrumbs') ?>
 
@@ -39,72 +39,45 @@
                 <h2 class="section-title__main">フォト</h2>
             </div>
             <ul class="gallery__list gallery-list">
-                <li class="gallery-list__item js-modal-open" data-target="1">
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery01.webp" alt="熱帯魚と珊瑚礁" />
-                </li>
-                <li class="gallery-list__item js-modal-open" data-target="2">
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery02.webp" alt="エメラルドグリーンの海" />
-                </li>
-                <li class="gallery-list__item js-modal-open" data-target="3">
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery03.webp" alt="熱帯魚" />
-                </li>
-                <li class="gallery-list__item js-modal-open" data-target="4">
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery04.webp" alt="熱帯魚" />
-                </li>
-                <li class="gallery-list__item js-modal-open" data-target="5">
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery05.webp" alt="熱帯魚の群れ" />
-                </li>
-                <li class="gallery-list__item js-modal-open" data-target="6">
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery06.webp" alt="珊瑚と熱帯魚" />
-                </li>
+                <?php
+                // オプションページ 'gallery-options' から繰り返しフィールド 'gallery' を取得
+                $gallery_items = SCF::get_option_meta('gallery-options', 'gallery');
+                if ($gallery_items) :
+                    foreach ($gallery_items as $gallery_item) :
+                        $image = $gallery_item['gallery_img']; // 画像フィールド
+                        $image_url = wp_get_attachment_image_url($image, 'full'); // 画像のURL
+                        $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true); // ALTテキスト
+                ?>
+                        <li class="gallery-list__item js-modal-open" data-target="<?php echo $image; ?>">
+                            <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" />
+                        </li>
+                <?php endforeach;
+                endif;
+                ?>
             </ul>
             <!-- modal -->
             <div class="gallery__modal gallery-modal">
                 <ul class="gallery-modal__list gallery-modal-list">
-                    <li class="gallery-modal-list__item modal js-modal" id="1">
-                        <div class="modal__inner">
-                            <figure class="modal__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery01.webp" alt="熱帯魚と珊瑚礁" />
-                            </figure>
-                        </div>
-                    </li>
-                    <li class="gallery-modal-list__item modal js-modal" id="2">
-                        <div class="modal__inner">
-                            <figure class="modal__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery02.webp" alt="エメラルドグリーンの海" />
-                            </figure>
-                        </div>
-                    </li>
-                    <li class="gallery-modal-list__item modal js-modal" id="3">
-                        <div class="modal__inner">
-                            <figure class="modal__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery03.webp" alt="熱帯魚" />
-                            </figure>
-                        </div>
-                    </li>
-                    <li class="gallery-modal-list__item modal js-modal" id="4">
-                        <div class="modal__inner">
-                            <figure class="modal__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery04.webp" alt="熱帯魚" />
-                            </figure>
-                        </div>
-                    </li>
-                    <li class="gallery-modal-list__item modal js-modal" id="5">
-                        <div class="modal__inner">
-                            <figure class="modal__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery05.webp" alt="熱帯魚の群れ" />
-                            </figure>
-                        </div>
-                    </li>
-                    <li class="gallery-modal-list__item modal js-modal" id="6">
-                        <div class="modal__inner">
-                            <figure class="modal__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/gallery06.webp" alt="珊瑚と熱帯魚" />
-                            </figure>
-                        </div>
-                    </li>
+                    <?php
+                    if ($gallery_items) :
+                        foreach ($gallery_items as $gallery_item) :
+                            $image = $gallery_item['gallery_img']; // 画像フィールド
+                            $image_url = wp_get_attachment_image_url($image, 'full'); // 画像のURL
+                            $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true); // ALTテキスト
+                    ?>
+                            <li class="gallery-modal-list__item modal js-modal" id="<?php echo $image; ?>">
+                                <div class="modal__inner">
+                                    <figure class="modal__image">
+                                        <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" />
+                                    </figure>
+                                </div>
+                            </li>
+                    <?php endforeach;
+                    endif;
+                    ?>
                 </ul>
             </div>
         </div>
     </section>
+
     <?php get_footer(); ?>
