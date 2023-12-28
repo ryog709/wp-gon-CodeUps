@@ -67,7 +67,7 @@
 								</div>
 							</div>
 							<div class="campaign-card__button">
-								<a href="<?php the_permalink(); ?>" class="button">詳細を見る<span></span></a>
+								<a href="<?php echo esc_url(home_url('/contact/')); ?>" class="button">詳細を見る<span></span></a>
 							</div>
 						</li>
 				<?php endwhile;
