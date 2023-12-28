@@ -80,3 +80,43 @@
     content: counter(number) ". ";
     counter-increment: number;
 }
+
+//WordPressカスタマイズ
+.legal-document__container {
+    margin-top: rem(40);
+    font-size: rem(16);
+    line-height: 2;
+    text-align: justify;
+}
+
+.legal-document__container > ol:first-of-type  {
+    margin-top: rem(32);
+}
+
+.legal-document__container p {
+    margin-top: rem(32);
+    line-height: 2;
+}
+
+.legal-document__container ol {
+    counter-reset: number;
+}
+
+.legal-document__container ol li {
+    padding-left: rem(22);
+    text-indent: rem(-15);
+}
+
+.legal-document__container ol li::before {
+    content: counter(number) ". ";
+    counter-increment: number;
+}
+
+//Terms of Serviceカスタマイズ
+.wp-block-group__inner-container p:first-child {
+    margin-top: initial;
+}
+.wp-block-group + ol {
+    margin-top: rem(32);
+}
+

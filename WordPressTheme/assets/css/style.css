@@ -970,7 +970,6 @@ a {
 	height: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	padding-bottom: 1.5rem;
 }
 
 .campaign-card > a {
@@ -988,13 +987,25 @@ a {
 	width: 100%;
 }
 
+.campaign-card__body-wrap {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	padding: 1.5rem;
+}
+
 .campaign-card__body {
 	display: flex;
-	flex: 1;
 	flex-direction: column;
+	padding-bottom: 1.5rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
 	padding-top: 1rem;
+}
+
+.campaign-card__body.campaign-card__body--small-space {
+	padding: 0;
+	padding: initial;
 }
 
 .campaign-card__body.campaign-card__body--space {
@@ -2146,6 +2157,45 @@ input.is-error::placeholder {
 .legal-document__description-number::before {
 	content: counter(number) ". ";
 	counter-increment: number;
+}
+
+.legal-document__container {
+	font-size: 1rem;
+	line-height: 2;
+	margin-top: 2.5rem;
+	text-align: justify;
+}
+
+.legal-document__container > ol:first-of-type {
+	margin-top: 2rem;
+}
+
+.legal-document__container p {
+	line-height: 2;
+	margin-top: 2rem;
+}
+
+.legal-document__container ol {
+	counter-reset: number;
+}
+
+.legal-document__container ol li {
+	padding-left: 1.375rem;
+	text-indent: -0.9375rem;
+}
+
+.legal-document__container ol li::before {
+	content: counter(number) ". ";
+	counter-increment: number;
+}
+
+.wp-block-group__inner-container p:first-child {
+	margin-top: 0;
+	margin-top: initial;
+}
+
+.wp-block-group + ol {
+	margin-top: 2rem;
 }
 
 .modal {
@@ -3579,14 +3629,6 @@ html {
 	grid-template-rows: repeat(1, 1fr);
 }
 
-.campaign-card {
-	padding-bottom: 2.75rem;
-}
-
-.campaign-card.campaign-card--space {
-	padding-bottom: 1.5rem;
-}
-
 .campaign-card > a {
 	height: auto;
 }
@@ -3595,15 +3637,16 @@ html {
 	aspect-ratio: 520/347;
 }
 
+.campaign-card__body-wrap {
+	justify-content: space-between;
+	padding-bottom: 2.75rem;
+}
+
 .campaign-card__body {
+	padding-bottom: 2.75rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
 	padding-top: 1.5rem;
-}
-
-.campaign-card__body.campaign-card__body--large-space {
-	padding-left: 1.5rem;
-	padding-right: 1.5rem;
 }
 
 .campaign-card__body.campaign-card__body--space {
@@ -3660,14 +3703,11 @@ html {
 	margin-left: 2.5625rem;
 }
 
-.campaign-card__content-wrap {
-	margin-top: 1.625rem;
-}
-
 .campaign-card__content {
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
+	margin-top: 1.625rem;
 }
 
 .campaign-card__date {

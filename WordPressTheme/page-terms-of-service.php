@@ -8,7 +8,7 @@
                 <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/privacy-policy-pc.webp" media="(min-width: 768px)" type="image/webp" />
                 <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/privacy-policy-sp.webp" alt="珊瑚礁と熱帯魚の群れ" />
             </picture>
-            <h1 class="sub-mv__title">privacy<span>&nbsp;policy</span></h1>
+            <h1 class="sub-mv__title">terms&nbsp;of<span>&nbsp;service</span></h1>
         </div>
     </section>
     <!-- breadcrumbs -->
@@ -26,4 +26,5 @@
             </section>
     <?php endwhile;
     endif; ?>
+
     <?php get_footer(); ?>
