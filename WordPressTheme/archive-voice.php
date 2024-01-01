@@ -35,10 +35,13 @@
 							<div class="voice-card__container">
 								<div class="voice-card__wrap">
 									<div class="voice-card__content">
-										<p class="voice-card__customer"><?php echo get_post_meta(get_the_ID(), 'voice_customer', true); ?></p>
+										<?php $voiceCustomer = get_field('voice_customer');
+										if ($voiceCustomer) : ?>
+											<p class="voice-card__customer"><?php echo $voiceCustomer['voice_age']; ?>(<?php echo $voiceCustomer['voice_gender']; ?>)</p>
+										<?php endif; ?>
 										<p class="voice-card__tag"><?php the_terms(get_the_ID(), 'voice_category'); ?></p>
 									</div>
-									<h3 class="voice-card__title"><?php echo get_post_meta(get_the_ID(), 'voice_title', true); ?></h3>
+									<h3 class="voice-card__title"><?php the_title(); ?></h3>
 								</div>
 								<div class="voice-card__img colorbox js-colorbox">
 									<?php if (has_post_thumbnail()) : ?>
@@ -46,7 +49,7 @@
 									<?php endif; ?>
 								</div>
 							</div>
-							<p class="voice-card__text"><?php echo get_post_meta(get_the_ID(), 'voice_text', true); ?></p>
+							<p class="voice-card__text"><?php the_field('voice_text'); ?></p>
 						</li>
 				<?php endwhile;
 				endif; ?>

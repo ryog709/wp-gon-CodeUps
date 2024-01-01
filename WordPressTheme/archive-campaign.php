@@ -32,44 +32,57 @@
 		<div class="campaign-card-contents__inner">
 			<ul class="campaign-card-contents__list campaign-card-list">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-						<li class="campaign-card-list__item campaign-card">
-							<figure class="campaign-card__image">
-								<?php if (has_post_thumbnail()) : ?>
-									<img src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
-								<?php endif; ?>
-							</figure>
-							<div class="campaign-card__body campaign-card__body--large-space">
+					<li class="campaign-card-list__item campaign-card">
+						<figure class="campaign-card__image">
+							<?php if (has_post_thumbnail()) : ?>
+								<img src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+							<?php endif; ?>
+						</figure>
+						<div class="campaign-card__body-wrap">
+							<div class="campaign-card__body campaign-card__body--small-space">
 								<p class="campaign-card__tag">
 									<span><?php the_terms(get_the_ID(), 'campaign_category'); ?></span>
 								</p>
 								<h2 class="campaign-card__title campaign-card__title--large"><?php the_title(); ?></h2>
-								<p class="campaign-card__text campaign-card__text--large-space">
-									<?php echo get_post_meta(get_the_ID(), 'campaign_text', true); ?>
-								</p>
-								<div class="campaign-card__price-wrap">
-									<div class="campaign-card__price-sub">
-										<span><?php echo get_post_meta(get_the_ID(), 'normal_price', true); ?></span>
-									</div>
-									<div class="campaign-card__price-main campaign-card__price-main--large-space">
-										<?php echo get_post_meta(get_the_ID(), 'campaign_price', true); ?>
-									</div>
-								</div>
-								<div class="campaign-card__content-wrap u-desktop">
-									<p class="campaign-card__content">
-										<?php echo get_post_meta(get_the_ID(), 'additional_content', true); ?>
+
+								<?php $campaignPrice = get_field('campaign_price_list');
+								if ($campaignPrice) : ?>
+									<p class="campaign-card__text campaign-card__text--large-space">
+										<?php echo $campaignPrice['campaign_text']; ?>
 									</p>
+									<div class="campaign-card__price-wrap">
+										<div class="campaign-card__price-sub">
+											<span><?php echo $campaignPrice['normal_price']; ?></span>
+										</div>
+										<div class="campaign-card__price-main campaign-card__price-main--large-space">
+											<?php echo $campaignPrice['campaign_price']; ?>
+										</div>
+									</div>
+								<?php endif; ?>
+
+								<?php $campaignDescription = get_field('campaign_description');
+								if ($campaignDescription) : ?>
+									<p class="campaign-card__content u-desktop">
+										<?php echo $campaignDescription['campaign_content']; ?>
+									</p>
+							</div>
+							<div class="campaign-card__guide u-desktop">
+
+								<?php $campaignTime = $campaignDescription['campaign_time'];
+									if ($campaignTime) : ?>
 									<p class="campaign-card__date">
-										<?php echo get_post_meta(get_the_ID(), 'campaign_period', true); ?>
+										<?php echo $campaignTime['campaign_start_time']; ?>-<?php echo $campaignTime['campaign_end_time']; ?>
 									</p>
-									<p class="campaign-card__reserved">
-										<?php echo get_post_meta(get_the_ID(), 'reservation_info', true); ?>
-									</p>
+								<?php endif; ?>
+								<p class="campaign-card__reserved">
+									<?php the_field('campaign_info'); ?>
+								<?php endif; ?>
+								<div class="campaign-card__button">
+									<a href="<?php echo esc_url(home_url('/contact/')); ?>" class="button">Contact us<span></span></a>
 								</div>
 							</div>
-							<div class="campaign-card__button">
-								<a href="<?php echo esc_url(home_url('/contact/')); ?>" class="button">詳細を見る<span></span></a>
-							</div>
-						</li>
+						</div>
+					</li>
 				<?php endwhile;
 				endif; ?>
 			</ul>

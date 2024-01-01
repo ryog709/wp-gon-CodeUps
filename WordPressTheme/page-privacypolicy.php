@@ -19,7 +19,7 @@
             <section class="legal-document layout-legal-document">
                 <div class="legal-document__inner">
                     <h2 class="legal-document__title"><?php the_title(); ?></h2>
-                    <div class="legal-document__container">
+                    <div class="legal-document__policy">
                         <?php the_content(); ?>
                     </div>
                 </div>
