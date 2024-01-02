@@ -3,6 +3,6 @@
 .blog-wrap {
     @include mq("md") {
         display: flex;
-        gap: rem(80);
+        gap: rem(86);
     }
 }
