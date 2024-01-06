@@ -188,38 +188,41 @@ jQuery(function ($) {
 
     const form = document.querySelector(".js-form");
     if (form) {
-        const errorMessage = document.querySelector(".js-form__error");
-        function validateInput(input) {
-            if (!input.value.trim()) {
-                // 空白チェック
-                input.classList.add("is-error");
-                return false;
-            } else {
-                input.classList.remove("is-error");
-                return true;
-            }
+    const errorMessage = document.querySelector(".js-form__error");
+    function validateInput(input) {
+        if (!input.value.trim()) {
+            // 空白チェック
+            input.classList.add("is-error");
+            return false;
+        } else {
+            input.classList.remove("is-error");
+            return true;
         }
+    }
 
-        const inputs = form.querySelectorAll("input[required], textarea[required]");
-        inputs.forEach((input) => {
-            input.addEventListener("input", () => {
-                validateInput(input);
-            });
+    const fields = form.querySelectorAll(".wpcf7-validates-as-required, .wpcf7-textarea");
+    fields.forEach((field) => {
+        field.addEventListener("input", () => {
+            validateInput(field);
         });
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            let isValidForm = true;
-            inputs.forEach((input) => {
-                if (!validateInput(input)) {
-                    isValidForm = false;
-                }
-            });
-            if (isValidForm) {
-                errorMessage.classList.remove("is-error");
-                // ここでフォームの送信処理を行う
-            } else {
-                errorMessage.classList.add("is-error");
+    });
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let isValidForm = true;
+        fields.forEach((field) => {
+            if (!validateInput(field)) {
+                isValidForm = false;
             }
         });
+        if (isValidForm) {
+            errorMessage.classList.remove("is-error");
+            // ここでフォームの送信処理を行う
+        } else {
+            errorMessage.classList.add("is-error");
+        }
+    });
     }
+
+
 });

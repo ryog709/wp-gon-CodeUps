@@ -1,5 +1,8 @@
 @use "global" as *;
 
+.form {
+}
+
 .form__wrap {
     padding-bottom: rem(24);
     border-bottom: 1px dotted $green-accent;
@@ -28,8 +31,7 @@
     font-weight: $bold;
     line-height: 1;
     @include mq("md") {
-        max-width: rem(220);
-        width: 100%;
+        width: 31.42857142857143%;
     }
 }
 
@@ -53,6 +55,23 @@
     }
 }
 
+
+.form__checkbox {
+    margin-top: rem(12);
+    @include mq("md") {
+        margin-top: rem(4);
+        width: 68.57142857142857%;
+    }
+}
+
+.form__select {
+    margin-top: rem(21);
+    @include mq("md") {
+        margin-top: initial;
+        width: 68.57142857142857%;
+    }
+}
+
 .form__check {
     margin-top: rem(32);
     margin-inline: auto;
@@ -61,24 +80,14 @@
     }
 }
 
-.form__checkbox {
-    margin-top: rem(12);
-    @include mq("md") {
-        margin-top: rem(4);
-    }
-}
-
-.form__select {
-    margin-top: rem(21);
-    @include mq("md") {
-        margin-top: initial;
-    }
-}
-
 .form__input,
 .form__textarea {
     flex-grow: 1;
+    @include mq("md") {
+      width: 68.57142857142857%;
+    }
 }
+
 
 .form__submit {
     margin-top: rem(25);
@@ -108,6 +117,32 @@ textarea.is-error {
     background-color: rgba(201, 72, 0, 0.2);
 }
 
-input.is-error::placeholder {
+input.is-error {
     color: $white;
+}
+
+.wpcf7-spinner {
+    display: none !important;
+}
+
+.wpcf7-not-valid-tip {
+  display: none;
+}
+
+.wpcf7-form.invalid .wpcf7-response-output {
+    color: $red;
+    font-size: rem(14);
+    text-align: center;
+    padding-left: 1em;
+    text-indent: -1em;
+    border-color: transparent !important;
+}
+
+.wpcf7-form.sent .wpcf7-response-output {
+    display: none;
+}
+
+.wpcf7-not-valid[type=text], .wpcf7-not-valid[type=tel], .wpcf7-not-valid[type=email], textarea.wpcf7-not-valid, .wpcf7-not-valid [type=checkbox] + span::before {
+    background: rgba(201, 72, 0, 0.2);
+    border: 1px solid $red;
 }
