@@ -10,7 +10,7 @@
     }
 }
 
-.form-check span {
+.wpcf7-list-item-label {
     display: inline-block;
     padding-left: rem(30);
     font-size: rem(14);
@@ -21,7 +21,7 @@
     }
 }
 
-.form-check span::before {
+.wpcf7-list-item-label::before {
     content: "";
     display: inline-block;
     width: rem(22);
@@ -36,7 +36,7 @@
     }
 }
 
-.form-check span::after {
+.wpcf7-list-item-label::after {
     content: "";
     position: absolute;
     top: rem(7);
@@ -53,3 +53,5 @@
         top: rem(5);
     }
 }
+
+

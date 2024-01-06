@@ -9,15 +9,6 @@
 
 }
 
-// .blog-side-menu-card > a {
-// 	height: 100%;
-// 	background-color: $white;
-// 	display: flex;
-// 	flex-direction: column;
-// 	@include mq("md") {
-// 		height: auto;
-// 	}
-// }
 
 .blog-side-menu-card__image img {
 	aspect-ratio: 294/188;
@@ -53,6 +44,7 @@
 		padding-bottom: rem(12);
 	}
 }
+
 .blog-side-menu-card__text {
 	font-size: rem(14);
 	font-weight: $regular;
@@ -72,6 +64,7 @@
 		margin-top: rem(12);
 	}
 }
+
 .blog-side-menu-card__price-sub {
 	font-size: rem(20);
 	font-weight: $bold;
@@ -83,6 +76,7 @@
 	display: flex;
 	align-items: center;
 }
+
 .blog-side-menu-card__price-main {
 	font-family: $font-en;
 	font-size: rem(32);

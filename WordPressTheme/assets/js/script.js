@@ -255,17 +255,17 @@ jQuery(function ($) {
       }
     };
     var errorMessage = document.querySelector(".js-form__error");
-    var inputs = form.querySelectorAll("input[required], textarea[required]");
-    inputs.forEach(function (input) {
-      input.addEventListener("input", function () {
-        validateInput(input);
+    var fields = form.querySelectorAll(".wpcf7-validates-as-required, .wpcf7-textarea");
+    fields.forEach(function (field) {
+      field.addEventListener("input", function () {
+        validateInput(field);
       });
     });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var isValidForm = true;
-      inputs.forEach(function (input) {
-        if (!validateInput(input)) {
+      fields.forEach(function (field) {
+        if (!validateInput(field)) {
           isValidForm = false;
         }
       });

@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php
+/*
+Template Name: お問い合わせ(送信完了)
+*/
+get_header();
+?>
 <main>
     <!-- sub-mv -->
     <section class="sub-mv">
@@ -13,6 +18,8 @@
     <!-- breadcrumbs -->
     <?php get_template_part('parts/breadcrumbs') ?>
 
+    <!-- var_dump(is_page('contact/thanks')); -->
+
     <!-- thanks -->
     <div class="thanks layout-thanks">
         <div class="thanks__inner">
@@ -21,4 +28,4 @@
         </div>
     </div>
 
-    <?php get_footer('wrap'); ?>
+    <?php get_footer(''); ?>

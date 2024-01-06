@@ -14,18 +14,24 @@
 	<!-- breadcrumbs -->
 	<?php get_template_part('parts/breadcrumbs') ?>
 
-	<!-- blog -->
+	<!-- blogセクション -->
 	<section class="blog layout-blog">
 		<div class="blog__inner inner">
 			<div class="blog__menu-wrap blog-wrap">
 				<article class="blog__main-menu blog-main-menu">
 					<ul class="blog-main-menu__list blog-cards blog-cards--column">
-						<!-- WordPress ループの開始 -->
 						<?php
+						// URLから年と月を取得
+						$year = get_query_var('year'); // 現在の年を取得
+						$monthnum = get_query_var('monthnum'); // 現在の月を取得
+						// WP_Queryに渡す引数を設定
 						$args = array(
-							'post_type' => 'post', // カスタム投稿タイプの名前
-							'posts_per_page' => 10 // 表示する投稿数
+							'post_type' => 'post', // 投稿タイプを'post'に指定
+							'posts_per_page' => 10, // 1ページあたりの投稿数を10に指定
+							'year' => $year, // 取得した年を指定
+							'monthnum' => $monthnum, // 取得した月を指定
 						);
+						// 新しいWP_Queryを作成し、結果を$the_queryに格納
 						$the_query = new WP_Query($args);
 
 						if ($the_query->have_posts()) :
@@ -40,7 +46,7 @@
 											<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />
 										<?php endif; ?>
 										<figcaption class="blog-card__body">
-											<time class="blog-card__date" datetime="<?php echo get_the_date('Y.m.d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time>
+											<time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date(); ?></time>
 											<p class="blog-card__title"><?php the_title(); ?></p>
 											<p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p>
 										</figcaption>
@@ -50,8 +56,9 @@
 						<?php
 							endwhile;
 						else :
-							echo '<p>投稿が見つかりませんでした。</p>';
+							echo '<p>該当する投稿がありません。</p>';
 						endif;
+						// メインクエリのリセット
 						wp_reset_postdata();
 						?>
 					</ul>

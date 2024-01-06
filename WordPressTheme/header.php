@@ -37,11 +37,19 @@ $tab3 = $information . '#tab03';
     <header class="header layout-header js-header">
         <div class="header__inner">
             <div class="header__content">
-                <h1 class="header__logo">
-                    <a href="<?php echo $top; ?>">
-                        <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/codeups-logo.svg" alt="CodeUps" />
-                    </a>
-                </h1>
+                <?php if (is_front_page()) : ?>
+                    <h1 class="header__logo">
+                        <a href="<?php echo $top; ?>">
+                            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/codeups-logo.svg" alt="CodeUps" />
+                        </a>
+                    </h1>
+                    <?php else : ?>
+                        <div class="header__logo">
+                            <a href="<?php echo $top; ?>">
+                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/codeups-logo.svg" alt="CodeUps" />
+                            </a>
+                        </div>
+                <?php endif; ?>
                 <nav class="header__nav">
                     <ul class="header__nav-items u-desktop">
                         <li class="header__nav-item">

@@ -53,3 +53,9 @@
 .form-checkbox input:checked + span::after {
     opacity: 1;
 }
+
+.wpcf7-list-item {
+    @include mq("md") {
+      display: block;
+    }
+}

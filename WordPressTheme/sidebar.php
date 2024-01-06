@@ -3,12 +3,13 @@
 	<div class="blog-side-menu__inner">
 		<!-- 人気記事セクション -->
 		<div class="blog-side-menu__wrap blog-side-menu-popular">
-			<h3 class="blog-side-menu-popular__title side-">人気記事</h3>
+			<h3 class="blog-side-menu-popular__title side-menu-title">人気記事</h3>
 			<?php
 			$popular_posts = new WP_Query(array(
 				'posts_per_page' => 3, // 表示したい記事の数
-				'orderby' => 'comment_count', // コメント数で並び替え
-				'order' => 'DESC' // 降順
+				'meta_key' 		 => 'post_views_count', // 閲覧数を保存しているメタキー
+				'orderby' 		 => 'meta_value_num', // メタキーの数値で並び替え
+				'order'			 => 'DESC' // 降順
 			));
 
 			if ($popular_posts->have_posts()) :
@@ -16,9 +17,11 @@
 					<figure class="blog-side-menu-popular__link popular-link">
 						<a href="<?php the_permalink(); ?>">
 							<div class="popular-link__image">
-								<?php if (has_post_thumbnail()) {
-									the_post_thumbnail('thumbnail', array('class' => 'img-responsive', 'width' => '121', 'height' => '90'));
-								} ?>
+								<?php if (has_post_thumbnail()) : ?>
+									<?php the_post_thumbnail('thumbnail', array('width' => '121', 'height' => '90')); ?>
+								<?php else : ?>
+									<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="121" height="90" loading="lazy" />
+								<?php endif; ?>
 							</div>
 							<div class="popular-link__content">
 								<time class="popular-link__date" datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time>
@@ -31,72 +34,98 @@
 			endif; ?>
 		</div>
 
-
 		<!-- blog-side-menu-review -->
 		<div class="blog-side-menu__wrap blog-side-menu-review">
-			<h3 class="blog-side-menu-review__title">口コミ</h3>
-			<figure class="blog-side-menu-review__image">
-				<img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/blog-side-menu01.webp" alt="30代(カップル)" width="294" height="218" loading="lazy" />
-				<figcaption class="blog-side-menu-review__content">
-					<p class="blog-side-menu-review__sub-head">30代(カップル)</p>
-					<p class="blog-side-menu-review__text">ここにタイトルが入ります。ここにタイトル</p>
-				</figcaption>
-			</figure>
-			<div class="blog-side-menu-review__button">
-				<a href="voice.html" class="button">View more<span></span></a>
-			</div>
+			<h3 class="blog-side-menu-review__title side-menu-title">口コミ</h3>
+			<?php
+			$latest_reviews      = new WP_Query(array(
+				'post_type' 	 => 'voice', // カスタム投稿タイプ
+				'posts_per_page' => 1
+			));
+
+			if ($latest_reviews->have_posts()) :
+				while ($latest_reviews->have_posts()) : $latest_reviews->the_post();
+					$voiceCustomer = get_field('voice_customer');
+			?>
+					<figure class="blog-side-menu-review__image">
+						<?php if (has_post_thumbnail()) : ?>
+							<img src="<?php echo the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="294" height="218" loading="lazy" />
+						<?php endif; ?>
+						<figcaption class="blog-side-menu-review__content">
+							<?php if ($voiceCustomer) : ?>
+								<p class="blog-side-menu-review__sub-head"><?php echo $voiceCustomer['voice_age']; ?>(<?php echo $voiceCustomer['voice_gender']; ?>)</p>
+							<?php endif; ?>
+							<p class="blog-side-menu-review__text"><?php the_title(); ?></p>
+						</figcaption>
+					</figure>
+					<div class="blog-side-menu-review__button">
+						<a href="<?php echo esc_url(home_url('/voice/')); ?>" class="button">View more<span></span></a>
+					</div>
+			<?php endwhile;
+				wp_reset_postdata();
+			endif; ?>
 		</div>
 
 		<!-- blog-side-menu-campaign -->
 		<div class="blog-side-menu__wrap blog-side-menu-campaign">
-			<h3 class="blog-side-menu-campaign__title side-">キャンペーン</h3>
-			<figure class="blog-side-menu-campaign__card campaign-card campaign-card--space">
-				<div class="campaign-card__image">
-					<img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/campaign-card01.webp" alt="熱帯魚の群れの写真" width="280" height="188" loading="lazy" />
-				</div>
-				<figcaption class="campaign-card__body campaign-card__body--space">
-					<p class="campaign-card__title campaign-card__title-center">ライセンス取得</p>
-					<p class="campaign-card__text campaign-card__text--space">全部コミコミ(お一人様)</p>
-					<div class="campaign-card__price-wrap campaign-card__price-wrap--space">
-						<div class="campaign-card__price-sub campaign-card__price-sub--small"><span>¥56,000</span></div>
-						<div class="campaign-card__price-main campaign-card__price-main--small">¥46,000</div>
-					</div>
-				</figcaption>
-			</figure>
-			<figure class="blog-side-menu-campaign__card campaign-card campaign-card--space">
-				<div class="campaign-card__image">
-					<img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/campaign-card02.webp" alt="透き通った浅瀬の海と船の風景" width="280" height="188" loading="lazy" />
-				</div>
-				<figcaption class="campaign-card__body campaign-card__body--space">
-					<p class="campaign-card__title campaign-card__title-center">貸切体験ダイビング</p>
-					<p class="campaign-card__text campaign-card__text--space">全部コミコミ(お一人様)</p>
-					<div class="campaign-card__price-wrap campaign-card__price-wrap--space">
-						<div class="campaign-card__price-sub campaign-card__price-sub--small"><span>¥24,000</span></div>
-						<div class="campaign-card__price-main campaign-card__price-main--small">¥18,000</div>
-					</div>
-				</figcaption>
-			</figure>
+			<h3 class="blog-side-menu-campaign__title side-menu-title">キャンペーン</h3>
+			<?php
+			$latest_campaigns    = new WP_Query(array(
+				'post_type'	     => 'campaign', // カスタム投稿タイプ
+				'posts_per_page' => 2
+			));
+
+			if ($latest_campaigns->have_posts()) :
+				while ($latest_campaigns->have_posts()) : $latest_campaigns->the_post();
+					$campaignPrice = get_field('campaign_price_list');
+			?>
+					<figure class="blog-side-menu-campaign__card blog-side-menu-card">
+						<div class="blog-side-menu-card__image">
+							<?php if (has_post_thumbnail()) : ?>
+								<img src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+							<?php endif; ?>
+						</div>
+						<figcaption class="blog-side-menu-card__body">
+							<p class="blog-side-menu-card__title"><?php the_title(); ?></p>
+							<?php if ($campaignPrice) : ?>
+								<p class="blog-side-menu-card__text"><?php echo $campaignPrice['campaign_text']; ?></p>
+								<div class="blog-side-menu-card__price-wrap">
+									<div class="blog-side-menu-card__price-sub"><span><?php echo $campaignPrice['normal_price']; ?></span></div>
+									<div class="blog-side-menu-card__price-main"><?php echo $campaignPrice['campaign_price']; ?></div>
+								</div>
+							<?php endif; ?>
+						</figcaption>
+					</figure>
+			<?php endwhile;
+				wp_reset_postdata();
+			endif; ?>
 			<div class="blog-side-menu-campaign__button">
-				<a href="campaign.html" class="button">View more<span></span></a>
+				<a href="<?php echo esc_url(home_url('/campaign/')); ?>" class="button">View more<span></span></a>
 			</div>
 		</div>
 
+
 		<!-- blog-side-menu-archive -->
 		<div class="blog-side-menu__wrap blog-side-menu-archive">
-			<h3 class="blog-side-menu-archive__title side-">アーカイブ</h3>
+			<h3 class="blog-side-menu-archive__title side-menu-title">アーカイブ</h3>
 			<ul class="blog-side-menu-archive__list">
 				<?php
+				// データベースから公開されている投稿の年を取得
 				$years = $wpdb->get_col("SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'post' ORDER BY post_date DESC");
 				foreach ($years as $year) : ?>
 					<li class="blog-side-menu-archive__list-item js-blog-side-menu-archive-list-item">
+						<!-- 各年を表示 -->
 						<div class="blog-side-menu-archive__year js-archive-accordion"><?php echo $year; ?></div>
 						<ul class="blog-side-menu-archive__month-wrap js-blog-side-menu-archive-month-wrap">
 							<?php
+							// 選択した年の月を取得
 							$months = $wpdb->get_col("SELECT DISTINCT MONTH(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'post' AND YEAR(post_date) = '" . $year . "' ORDER BY post_date DESC");
 							foreach ($months as $month) :
+								// 月の名前を取得（例：January, February, ...）
 								$month_name = date_i18n('F', mktime(0, 0, 0, $month));
 							?>
 								<li class="blog-side-menu-archive__month">
+									<!-- 各月へのリンクを表示 -->
 									<a href="<?php echo get_month_link($year, $month); ?>"><?php echo $month_name; ?></a>
 								</li>
 							<?php endforeach; ?>
@@ -104,6 +133,7 @@
 					</li>
 				<?php endforeach; ?>
 			</ul>
+
 		</div>
 	</div>
 </aside>
