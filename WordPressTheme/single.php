@@ -6,7 +6,7 @@
 		<div class="sub-mv__inner">
 			<picture class="sub-mv__picture">
 				<source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/blog-mv-pc.webp" media="(min-width: 768px)" type="image/webp" />
-				<img src="<?php echo get_theme_file_uri(); ?><?php echo get_theme_file_uri(); ?>/assets/images/common/blog-mv-sp.webp" alt="海中を漂う熱帯魚" />
+				<img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/blog-mv-sp.webp" alt="海中を漂う熱帯魚" />
 			</picture>
 			<h1 class="sub-mv__title">blog</h1>
 		</div>
@@ -47,11 +47,11 @@
 							$prev_post_url = get_permalink($prev_post->ID);
 							echo '<a class="pagenavi-prev" rel="prev" href="' . esc_url($prev_post_url) . '" aria-label="前のページへ"></a>';
 						}
-
 						if (!empty($next_post)) {
 							$next_post_url = get_permalink($next_post->ID);
 							echo '<a class="pagenavi-next" rel="next" href="' . esc_url($next_post_url) . '" aria-label="次のページへ"></a>';
 						}
+
 						?>
 					</div>
 

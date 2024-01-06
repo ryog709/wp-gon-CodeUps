@@ -55,7 +55,5 @@
 }
 
 .wpcf7-list-item {
-    @include mq("md") {
-      display: block;
-    }
+    display: block;
 }

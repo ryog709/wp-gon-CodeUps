@@ -24,7 +24,7 @@
 						<?php
 						$args = array(
 							'post_type' => 'post', // カスタム投稿タイプの名前
-							'posts_per_page' => 10 // 表示する投稿数
+							// 'posts_per_page' => 10 // 表示する投稿数
 						);
 						$the_query = new WP_Query($args);
 

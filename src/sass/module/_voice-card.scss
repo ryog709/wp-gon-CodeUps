@@ -8,6 +8,10 @@
     padding: rem(15) rem(16) rem(24);
     @include mq("md") {
         padding: rem(24);
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 2;
+        gap: 0;
     }
 }
 
