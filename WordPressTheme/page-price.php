@@ -40,7 +40,7 @@
                     $rowspan = count($price_group); // rowspanの値を設定（テーブルの行数）
                     // テーブルでプラン情報を表示
             ?>
-                    <table class="price__list price-list">
+                    <table id="price<?php echo $plan_id; ?>" class="price__list price-list">
                         <tr class="price-list_row">
                             <th class="price-list__head" rowspan="<?php echo $rowspan; ?>">
                                 <span><?php echo $plan['title']; ?></span> <!-- プランのタイトル -->

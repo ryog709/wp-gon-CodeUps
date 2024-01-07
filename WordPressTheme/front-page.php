@@ -73,7 +73,7 @@
                         $campaign_query = new WP_Query([
                             'post_type'      => 'campaign', // カスタム投稿タイプを指定
                             'post_status'    => 'publish',  // 公開された投稿のみ
-                            'posts_per_page' => 12,         // 最大12件の投稿を表示
+                            'posts_per_page' => 16,         // 最大16件の投稿を表示
                             'orderby'        => "rand"      // ランダムな順序で投稿を取得
                         ]);
                         // 投稿があるかどうかをチェック
@@ -317,7 +317,7 @@
                             // 各価格情報をリストとして出力
                             foreach ($price_group as $item) {
                                 echo '<div class="top-price__list-item">';
-                                echo '<dt class="top-price__list-menu">' .  $item[$plan['course_array'][0]] . '<br class="u-mobile">' . $item[$plan['course_array'][1]] . '</dt>';
+                                echo '<dt class="top-price__list-menu">' .  $item[$plan['course_array'][0]] . $item[$plan['course_array'][1]] . '</dt>';
                                 echo '<dd class="top-price__list-price">' . $item[$plan['course_array'][2]] . '</dd>';
                                 echo '</div>';
                             }

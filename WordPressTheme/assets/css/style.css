@@ -79,6 +79,7 @@ dd {
 
 html {
 	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
 }
 
 /* Set core body defaults */
@@ -777,7 +778,7 @@ a {
 	font-size: 0.875rem;
 }
 
-.breadcrumbs.breadcrumbs--color-reverse span {
+.breadcrumbs.breadcrumbs--color-reverse {
 	color: #fff;
 }
 
@@ -1392,6 +1393,10 @@ a {
 
 .form-checkbox input:checked + span::after {
 	opacity: 1;
+}
+
+.wpcf7-list-item {
+	display: block;
 }
 
 .form-input input {
@@ -3910,10 +3915,6 @@ html {
 	top: 0.3125rem;
 }
 
-.wpcf7-list-item {
-	display: block;
-}
-
 .form-select select {
 	padding-bottom: 0.5rem;
 	padding-top: 0.5rem;
@@ -4044,6 +4045,10 @@ html {
 }
 
 .global-menu__items + .global-menu__items {
+	margin-top: 0.875rem;
+}
+
+.global-menu__right .global-menu__wrap:last-child .global-menu__items:nth-child(n+2) {
 	margin-top: 0.875rem;
 }
 
@@ -4539,6 +4544,11 @@ html {
 }
 
 .voice-card {
+	grid-gap: 0;
+	display: grid;
+	gap: 0;
+	grid-row: span 2;
+	grid-template-rows: subgrid;
 	padding: 1.5rem;
 }
 

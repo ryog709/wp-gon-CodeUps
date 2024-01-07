@@ -62,7 +62,7 @@ function change_posts_per_page($query)
         $query->set('posts_per_page', '4'); //表示件数を指定
     }
     if ($query->is_post_type_archive('voice')) {
-        $query->set('posts_per_page', '6'); // お客様の声の投稿を6件に制御
+        $query->set('posts_per_page', '6'); //お客様の声の投稿を6件に制御
     }
 }
 add_action('pre_get_posts', 'change_posts_per_page');
@@ -124,7 +124,6 @@ function disable_cpt_single_pages()
     }
 }
 
-
 // Contact Form 7の自動pタグ無効
 add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
 function wpcf7_autop_return_false()
@@ -162,12 +161,11 @@ function wpcf7_select_list($tag, $unused)
         if (!in_array($title, $overlapping_titles)) {
             $overlapping_titles[] = $title; // 重複チェック用配列に追加
             // セレクトボックスの値、表示ラベルにタイトルを追加
-            $tag['raw_values'][] = $title;
-            $tag['values'][]     = $title;
-            $tag['labels'][]     = $title;
+            $tag['raw_values'][]  = $title;
+            $tag['values'][]      = $title;
+            $tag['labels'][]      = $title;
         }
     }
-
     return $tag; // 変更されたタグを返却
 }
 // Contact Form 7のフィルターフックに関数を追加
