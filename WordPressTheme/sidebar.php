@@ -5,7 +5,7 @@
 		<div class="blog-side-menu__wrap blog-side-menu-popular">
 			<h3 class="blog-side-menu-popular__title side-menu-title">人気記事</h3>
 			<?php
-			$popular_posts = new WP_Query(array(
+			$popular_posts       = new WP_Query(array(
 				'posts_per_page' => 3, // 表示したい記事の数
 				'meta_key' 		 => 'post_views_count', // 閲覧数を保存しているメタキー
 				'orderby' 		 => 'meta_value_num', // メタキーの数値で並び替え
@@ -40,7 +40,7 @@
 			<?php
 			$latest_reviews      = new WP_Query(array(
 				'post_type' 	 => 'voice', // カスタム投稿タイプ
-				'posts_per_page' => 1
+				'posts_per_page' =>1         // 投稿数を設定
 			));
 
 			if ($latest_reviews->have_posts()) :
@@ -71,12 +71,15 @@
 			<h3 class="blog-side-menu-campaign__title side-menu-title">キャンペーン</h3>
 			<?php
 			$latest_campaigns    = new WP_Query(array(
-				'post_type'	     => 'campaign', // カスタム投稿タイプ
-				'posts_per_page' => 2
+				'post_type'	     => 'campaign', // カスタム投稿タイプを指定
+				'posts_per_page' => 2 			// 投稿数を設定
 			));
 
+			// クエリが投稿を持っている場合の処理
 			if ($latest_campaigns->have_posts()) :
+				// 投稿をループ処理で表示
 				while ($latest_campaigns->have_posts()) : $latest_campaigns->the_post();
+					// カスタムフィールドからキャンペーン価格情報を取得
 					$campaignPrice = get_field('campaign_price_list');
 			?>
 					<figure class="blog-side-menu-campaign__card blog-side-menu-card">
@@ -133,7 +136,6 @@
 					</li>
 				<?php endforeach; ?>
 			</ul>
-
 		</div>
 	</div>
 </aside>

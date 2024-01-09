@@ -44,16 +44,14 @@
                 $gallery_items = SCF::get_option_meta('gallery-options', 'gallery');
                 if ($gallery_items) :
                     foreach ($gallery_items as $gallery_item) :
-                        $image = $gallery_item['gallery_img']; // 画像フィールド
+                        $image     = $gallery_item['gallery_img']; // 画像フィールド
                         $image_url = wp_get_attachment_image_url($image, 'full'); // 画像のURL
                         $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true); // ALTテキスト
                 ?>
                         <li class="gallery-list__item js-modal-open" data-target="<?php echo $image; ?>">
                             <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" />
                         </li>
-                <?php endforeach;
-                endif;
-                ?>
+                <?php endforeach;endif;?>
             </ul>
             <!-- modal -->
             <div class="gallery__modal gallery-modal">
@@ -61,7 +59,7 @@
                     <?php
                     if ($gallery_items) :
                         foreach ($gallery_items as $gallery_item) :
-                            $image = $gallery_item['gallery_img']; // 画像フィールド
+                            $image     = $gallery_item['gallery_img']; // 画像フィールド
                             $image_url = wp_get_attachment_image_url($image, 'full'); // 画像のURL
                             $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true); // ALTテキスト
                     ?>
@@ -72,9 +70,7 @@
                                     </figure>
                                 </div>
                             </li>
-                    <?php endforeach;
-                    endif;
-                    ?>
+                    <?php endforeach ; endif ; ?>
                 </ul>
             </div>
         </div>

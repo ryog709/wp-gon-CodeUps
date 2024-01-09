@@ -309,7 +309,7 @@ a {
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -1.4375rem;
 	width: 7.5rem;
@@ -535,7 +535,7 @@ a {
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -1.0625rem;
 	width: 7.5rem;
@@ -759,7 +759,7 @@ a {
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -1.5625rem;
 	width: 7.5rem;
@@ -926,7 +926,7 @@ a {
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -9.1875rem;
 	width: 7.5rem;
@@ -1252,7 +1252,7 @@ a {
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -1.5rem;
 	width: 7.5rem;
@@ -1395,8 +1395,13 @@ a {
 	opacity: 1;
 }
 
+.form-checkbox .wpcf7-list-item + .wpcf7-list-item {
+	margin-top: 0.1875rem;
+}
+
 .wpcf7-list-item {
 	display: block;
+	margin: 0;
 }
 
 .form-input input {
@@ -2053,7 +2058,7 @@ textarea.wpcf7-not-valid,
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -5.875rem;
 	width: 7.5rem;
@@ -2116,7 +2121,7 @@ textarea.wpcf7-not-valid,
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -1.5rem;
 	width: 7.5rem;
@@ -2583,7 +2588,7 @@ textarea.wpcf7-not-valid,
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -1.5625rem;
 	width: 7.5rem;
@@ -3256,7 +3261,7 @@ textarea.wpcf7-not-valid,
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -9.3125rem;
 	width: 7.5rem;
@@ -3455,6 +3460,7 @@ html {
 }
 
 .aboutUs__container {
+	grid-row-gap: 0;
 	display: grid;
 	grid-template-columns: repeat(3, 18.55%) 3.7% repeat(2, 18.51%) 3.7%;
 	grid-template-rows: 12.26% 18.15% repeat(2, 1fr) 8.49%;
@@ -3931,7 +3937,7 @@ html {
 }
 
 .form__wrap {
-	margin-top: 2.4375rem;
+	margin-top: 2.375rem;
 }
 
 .form__label {
@@ -3946,7 +3952,8 @@ html {
 }
 
 .form__checkbox {
-	margin-top: 0.25rem;
+	margin-top: 0;
+	padding-top: 0.25rem;
 	width: 68.5714285714%;
 }
 
@@ -3957,7 +3964,7 @@ html {
 }
 
 .form__check {
-	margin-top: 4.5rem;
+	margin-top: 4.75rem;
 }
 
 .form__input,
@@ -4389,7 +4396,7 @@ html {
 	background: url(../images/common/blog-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 12.5rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -4.6875rem;
 	width: 26.9375rem;
@@ -4519,7 +4526,7 @@ html {
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 8.625rem;
-	left: calc(50% - min(48vw, 38.75rem));
+	left: calc(50% - min(46vw, 38.75rem));
 	position: absolute;
 	top: -7.375rem;
 	width: 19.25rem;

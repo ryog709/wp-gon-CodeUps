@@ -65,12 +65,12 @@ $price_course4 = $price . '#price4';
 <?php endif; ?>
 </main>
 <div class="page-top js-page-top">
-    <a href="#">
+    <a href="#top">
         <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/scroll-button.svg" alt="PAGE TOP" width="80" height="80" loading="lazy" />
     </a>
 </div>
 
-<footer class="footer footer--space js-footer">
+<footer class="footer <?php echo (is_page('thanks')) ? 'layout-footer-contact' : 'footer--space'; ?> js-footer">
     <div class="footer__inner inner">
         <div class="footer__logo-wrap">
             <div class="footer__logo">
@@ -79,10 +79,10 @@ $price_course4 = $price . '#price4';
                 </a>
             </div>
             <div class="footer__sns-icon-wrap">
-                <a href="#" class="footer__sns-icon" target="_blank" rel="noopener">
+                <a href="https://www.facebook.com" class="footer__sns-icon" target="_blank" rel="noopener">
                     <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/FacebookLogo.svg" alt="FacebookLogo" width="24" height="24" loading="lazy" />
                 </a>
-                <a href="#" class="footer__sns-icon" target="_blank" rel="noopener">
+                <a href="https://www.instagram.com" class="footer__sns-icon" target="_blank" rel="noopener">
                     <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/InstagramLogo.svg" alt="InstagramLogo" width="24" height="24" loading="lazy" />
                 </a>
             </div>

@@ -70,7 +70,7 @@
                     <div class="top-campaign__swiper-wrapper swiper-wrapper">
                         <?php
                         // 新しいWP_Queryインスタンスを作成し、'campaign'カスタム投稿タイプの投稿を取得
-                        $campaign_query = new WP_Query([
+                        $campaign_query      = new WP_Query([
                             'post_type'      => 'campaign', // カスタム投稿タイプを指定
                             'post_status'    => 'publish',  // 公開された投稿のみ
                             'posts_per_page' => 16,         // 最大16件の投稿を表示
@@ -109,12 +109,9 @@
                                         </figcaption>
                                     </figure>
                                 </div>
-                        <?php
-                            endwhile;
-                            // ループの後処理
+                        <?php endwhile;
                             wp_reset_postdata();
-                        endif;
-                        ?>
+                        endif;?>
                     </div>
                 </div>
             </div>
@@ -203,7 +200,7 @@
                                         <!-- サムネイル画像がある場合、サムネイルを表示 -->
                                         <?php the_post_thumbnail('large', ['width' => '301', 'height' => '201', 'loading' => 'lazy']); ?>
                                     <?php else : ?>
-                                        <!-- サムネイル画像がない場合、デフォルト画像を表示 -->
+                                        <!-- サムネイル画像がない場合、noimage画像を表示 -->
                                         <img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />
                                     <?php endif; ?>
                                 </div>
@@ -215,12 +212,9 @@
 
                             </a>
                         </li>
-                    <?php endwhile; // ループの終了
-                    ?>
-                    <?php wp_reset_postdata(); // クエリのリセット
-                    ?>
-                <?php endif; // 投稿がある場合の処理の終了
-                ?>
+                    <?php endwhile;?>
+                    <?php wp_reset_postdata();?>
+                <?php endif;?>
             </ul>
             <div class="top-blog__button">
                 <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="button">View more<span></span></a>
@@ -238,7 +232,7 @@
             <ul class="top-voice__cards voice-cards">
                 <?php
                 // カスタム投稿タイプ 'voice' から投稿を取得するためのクエリ設定
-                $voice_query = new WP_Query([
+                $voice_query         = new WP_Query([
                     'post_type'      => 'voice',    // カスタム投稿タイプ 'voice' を指定
                     'post_status'    => 'publish',  // 公開された投稿のみ取得
                     'posts_per_page' => 2,          // 一度に表示する投稿数
@@ -268,10 +262,9 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <p class="voice-card__text"><?php echo wp_trim_words(get_field('voice_text'), 160, '…'); ?></p><!-- 投稿の内容を160単語でトリミングして表示 -->
+                            <p class="voice-card__text"><?php echo wp_trim_words(get_field('voice_text'), 170, '…'); ?></p><!-- 投稿の内容を160単語でトリミングして表示 -->
                         </li>
                 <?php endwhile;
-                    // 投稿データのリセット
                     wp_reset_postdata();
                 endif; ?>
             </ul>

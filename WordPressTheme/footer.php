@@ -28,7 +28,7 @@ $price_course4 = $price . '#price4';
 
 <?php if (!is_page('contact') && !is_page('contact/thanks')) : ?>
     <!-- contact -->
-    <section class="contact layout-top-contact">
+    <section class="<?php echo is_front_page() ? 'contact layout-top-contact' : 'contact layout-contact'; ?>">
         <div class="contact__inner inner">
             <div class="contact__container">
                 <div class="contact__access-content">
@@ -66,12 +66,12 @@ $price_course4 = $price . '#price4';
 
 </main>
 <div class="page-top js-page-top">
-    <a href="#">
+    <a href="#top">
         <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/scroll-button.svg" alt="PAGE TOP" width="80" height="80" loading="lazy" />
     </a>
 </div>
 
-<footer class="footer layout-footer js-footer">
+<footer class="footer <?php echo (is_page('contact')) ? 'layout-footer-contact' : 'layout-footer'; ?> js-footer">
     <div class="footer__inner inner">
         <div class="footer__logo-wrap">
             <div class="footer__logo">
