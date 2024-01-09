@@ -43,7 +43,7 @@ $price_course4 = $price . '#price4';
 ?>
 
 <body>
-    <div class="wrap wrap-bg-color">
+    <div class="wrap <?php echo is_404() ? 'wrap-bg-color' : ''; ?>">
         <header class="header layout-header js-header">
             <div class="header__inner">
                 <div class="header__content">

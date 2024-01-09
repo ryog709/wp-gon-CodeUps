@@ -20,10 +20,12 @@
 				<li class="tag-list__item tag-item <?php if (!is_tax('voice_category')) echo 'is-color'; ?>">
 					<a href="<?php echo get_post_type_archive_link('voice') ?>">ALL</a>
 				</li>
-
+				<!-- カテゴリーのタームを取得 -->
 				<?php $voice_terms = get_terms('voice_category', array('hide_empty' => false)); ?>
+				<!-- 各カテゴリータグを一つずつリストアイテムとして表示 -->
 				<?php foreach ($voice_terms as $voice_term) : ?>
 					<li class="tag-list__item tag-item <?php if (is_tax('voice_category', $voice_term->term_id)) echo 'is-color'; ?>">
+						<!-- タグのリンク。クリックするとそのカテゴリーだけを表示 -->
 						<a href="<?php echo get_term_link($voice_term, 'voice_category') ?>">
 							<?php echo $voice_term->name; ?>
 						</a>
@@ -37,29 +39,39 @@
 	<section class="voice layout-voice">
 		<div class="voice__inner inner">
 			<ul class="voice__cards voice-cards">
-				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-						<li class="voice-cards__item voice-card">
-							<div class="voice-card__container">
-								<div class="voice-card__wrap">
-									<div class="voice-card__content">
-										<?php $voiceCustomer = get_field('voice_customer');
-										if ($voiceCustomer) : ?>
-											<p class="voice-card__customer"><?php echo $voiceCustomer['voice_age']; ?>(<?php echo $voiceCustomer['voice_gender']; ?>)</p>
-										<?php endif; ?>
-										<p class="voice-card__tag"><?php the_terms(get_the_ID(), 'voice_category'); ?></p>
-									</div>
-									<h3 class="voice-card__title"><?php the_title(); ?></h3>
+				<?php if (have_posts()) :while (have_posts()) :the_post();?>
+					<li class="voice-cards__item voice-card">
+						<div class="voice-card__container">
+							<div class="voice-card__wrap">
+								<div class="voice-card__content">
+									<?php
+									// カスタムフィールド 'voice_customer' を取得
+									$voiceCustomer = get_field('voice_customer');
+									// 'voice_customer' が存在するかチェック
+									if ($voiceCustomer) :
+									?>
+										<!-- 年齢と性別を表示 -->
+										<p class="voice-card__customer"><?php echo $voiceCustomer['voice_age']; ?>(<?php echo $voiceCustomer['voice_gender']; ?>)</p>
+									<?php endif;?>
+									<!-- カテゴリーを表示 -->
+									<p class="voice-card__tag"><?php the_terms(get_the_ID(), 'voice_category'); ?></p>
 								</div>
-								<div class="voice-card__img colorbox js-colorbox">
-									<?php if (has_post_thumbnail()) : ?>
-										<img src="<?php echo the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
-									<?php endif; ?>
-								</div>
+								<!-- タイトルを表示 -->
+								<h3 class="voice-card__title"><?php the_title(); ?></h3>
 							</div>
-							<p class="voice-card__text"><?php the_field('voice_text'); ?></p>
-						</li>
-				<?php endwhile;
-				endif; ?>
+							<div class="voice-card__img colorbox js-colorbox">
+								<?php
+								// 投稿にサムネイルがあるかチェック
+								if (has_post_thumbnail()) :?>
+									<!-- サムネイルを表示 -->
+									<img src="<?php echo the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
+								<?php endif;?>
+							</div>
+						</div>
+						<!-- カスタムフィールド 'voice_text' を表示 -->
+						<p class="voice-card__text"><?php the_field('voice_text'); ?></p>
+					</li>
+				<?php endwhile; endif;?>
 			</ul>
 		</div>
 

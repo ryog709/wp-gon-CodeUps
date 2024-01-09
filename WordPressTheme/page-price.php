@@ -27,8 +27,8 @@
                 if (preg_match('/^price_course_([0-9]+)$/', $key, $matches)) {
                     $plan_id = $matches[1];
                     $plans[$plan_id] = [
-                        'title' => $value, // プランのタイトル
-                        'group' => 'price-' . $plan_id, // グループ名
+                        'title'        => $value, // プランのタイトル
+                        'group'        => 'price-' . $plan_id, // グループ名
                         'course_array' => ['course_' . $plan_id, 'sp-course_' . $plan_id, 'price_' . $plan_id] // コース情報の配列
                     ];
                 }
@@ -40,25 +40,25 @@
                     $rowspan = count($price_group); // rowspanの値を設定（テーブルの行数）
                     // テーブルでプラン情報を表示
             ?>
-                    <table id="price<?php echo $plan_id; ?>" class="price__list price-list">
-                        <tr class="price-list_row">
-                            <th class="price-list__head" rowspan="<?php echo $rowspan; ?>">
-                                <span><?php echo $plan['title']; ?></span> <!-- プランのタイトル -->
-                            </th>
-                            <?php
-                            // 各コースの詳細を表示
-                            $first = true;
-                            foreach ($price_group as $item) :
-                                if (!$first) {
-                                    echo '</tr><tr class="price-list_row">';
-                                }
-                                $first = false;
-                            ?>
-                                <td class="price-list__course"><?php echo $item[$plan['course_array'][0]]; ?><br class="u-mobile" /><?php echo $item[$plan['course_array'][1]]; ?></td> <!-- コース情報 -->
-                                <td class="price-list__value"><?php echo $item[$plan['course_array'][2]]; ?></td> <!-- 価格情報 -->
-                            <?php endforeach; ?>
-                        </tr>
-                    </table>
+                <table id="price<?php echo $plan_id; ?>" class="price__list price-list">
+                    <tr class="price-list_row">
+                        <th class="price-list__head" rowspan="<?php echo $rowspan; ?>">
+                            <span><?php echo $plan['title']; ?></span> <!-- プランのタイトル -->
+                        </th>
+                        <?php
+                        // 各コースの詳細を表示
+                        $first = true;
+                        foreach ($price_group as $item) :
+                            if (!$first) {
+                                echo '</tr><tr class="price-list_row">';
+                            }
+                            $first = false;
+                        ?>
+                            <td class="price-list__course"><?php echo $item[$plan['course_array'][0]]; ?><br class="u-mobile" /><?php echo $item[$plan['course_array'][1]]; ?></td> <!-- コース情報 -->
+                            <td class="price-list__value"><?php echo $item[$plan['course_array'][2]]; ?></td> <!-- 価格情報 -->
+                        <?php endforeach; ?>
+                    </tr>
+                </table>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>

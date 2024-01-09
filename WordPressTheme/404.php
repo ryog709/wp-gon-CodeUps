@@ -16,7 +16,7 @@
             <h1 class="notfound__title">404</h1>
             <p class="notfound__text">申し訳ありません。<br />お探しのページが見つかりません。</p>
             <div class="notfound__button">
-                <a href="./" class="button button--color-reverse">Page TOP<span></span></a>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="button button--color-reverse">Page TOP<span></span></a>
             </div>
         </div>
     </section>

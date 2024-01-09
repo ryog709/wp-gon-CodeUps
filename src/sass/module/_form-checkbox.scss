@@ -54,6 +54,12 @@
     opacity: 1;
 }
 
+// wpcf7カスタマイズ
+.form-checkbox .wpcf7-list-item + .wpcf7-list-item {
+    margin-top: rem(3);
+}
+
 .wpcf7-list-item {
     display: block;
+    margin: 0;
 }

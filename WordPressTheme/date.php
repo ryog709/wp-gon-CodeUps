@@ -26,10 +26,10 @@
 						$monthnum = get_query_var('monthnum'); // 現在の月を取得
 						// WP_Queryに渡す引数を設定
 						$args = array(
-							'post_type' => 'post', // 投稿タイプを'post'に指定
-							'posts_per_page' => 10, // 1ページあたりの投稿数を10に指定
-							'year' => $year, // 取得した年を指定
-							'monthnum' => $monthnum, // 取得した月を指定
+							'post_type'      => 'post', // 投稿タイプを'post'に指定
+							'posts_per_page' => 10,     // 1ページあたりの投稿数を10に指定
+							'year'           => $year,  // 取得した年を指定
+							'monthnum'       => $monthnum, // 取得した月を指定
 						);
 						// 新しいWP_Queryを作成し、結果を$the_queryに格納
 						$the_query = new WP_Query($args);
@@ -58,7 +58,6 @@
 						else :
 							echo '<p>該当する投稿がありません。</p>';
 						endif;
-						// メインクエリのリセット
 						wp_reset_postdata();
 						?>
 					</ul>
