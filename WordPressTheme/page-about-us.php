@@ -27,7 +27,7 @@
                     </figure>
                 </div>
                 <p class="aboutUs__sub-head"><span>dive</span>&nbsp;into<br />the<span>&nbsp;ocean</span></p>
-                <p class="aboutUs__text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。</p>
+                <p class="aboutUs__text">私たちは海の魅力をもっと多くの人に伝えたい！初心者からベテランまで、安全かつ快適なダイビングを提供します。<br>海とのふれあいで、新しい世界を発見しましょう。海底の美しい景色と生き物に会いに、一緒に潜りませんか？</p>
             </div>
         </div>
     </article>
@@ -51,7 +51,8 @@
                         <li class="gallery-list__item js-modal-open" data-target="<?php echo $image; ?>">
                             <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" />
                         </li>
-                <?php endforeach;endif;?>
+                <?php endforeach;
+                endif; ?>
             </ul>
             <!-- modal -->
             <div class="gallery__modal gallery-modal">
@@ -70,7 +71,8 @@
                                     </figure>
                                 </div>
                             </li>
-                    <?php endforeach ; endif ; ?>
+                    <?php endforeach;
+                    endif; ?>
                 </ul>
             </div>
         </div>

@@ -18,7 +18,7 @@
 						<a href="<?php the_permalink(); ?>">
 							<div class="popular-link__image">
 								<?php if (has_post_thumbnail()) : ?>
-									<?php the_post_thumbnail('thumbnail', array('width' => '121', 'height' => '90')); ?>
+									<?php the_post_thumbnail('thumbnail', array('loading' => 'lazy')); ?>
 								<?php else : ?>
 									<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="121" height="90" loading="lazy" />
 								<?php endif; ?>
@@ -49,7 +49,7 @@
 			?>
 					<figure class="blog-side-menu-review__image">
 						<?php if (has_post_thumbnail()) : ?>
-							<img src="<?php echo the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="294" height="218" loading="lazy" />
+							<img src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="294" height="218" loading="lazy" />
 						<?php endif; ?>
 						<figcaption class="blog-side-menu-review__content">
 							<?php if ($voiceCustomer) : ?>
@@ -85,7 +85,7 @@
 					<figure class="blog-side-menu-campaign__card blog-side-menu-card">
 						<div class="blog-side-menu-card__image">
 							<?php if (has_post_thumbnail()) : ?>
-								<img src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+								<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
 							<?php endif; ?>
 						</div>
 						<figcaption class="blog-side-menu-card__body">

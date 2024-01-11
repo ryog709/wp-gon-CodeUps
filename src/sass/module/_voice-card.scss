@@ -50,12 +50,19 @@
     color: $green-accent;
     font-weight: $regular;
     line-height: 1;
-    padding: rem(8) rem(11.5);
     border: 1px solid $green-accent;
     margin-top: rem(4);
     @include mq("md") {
-        padding: rem(10) rem(15);
+        margin-top: initial;
         margin-left: auto;
+    }
+}
+
+.voice-card__tag a {
+    padding: rem(8) rem(11.5);
+    @include mq("md") {
+        padding: rem(10) rem(15);
+
     }
 }
 
