@@ -64,7 +64,7 @@
 								// 投稿にサムネイルがあるかチェック
 								if (has_post_thumbnail()) :?>
 									<!-- サムネイルを表示 -->
-									<img src="<?php echo the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
+									<img src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
 								<?php endif;?>
 							</div>
 						</div>

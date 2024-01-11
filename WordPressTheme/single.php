@@ -28,7 +28,7 @@
 								<figure>
 									<?php if (has_post_thumbnail()) : ?>
 										<!-- サムネイル画像を表示 -->
-										<?php the_post_thumbnail('full', ['class' => 'blog-detail-main__image', 'alt' => get_the_title(), 'width' => '345', 'height' => '231']); ?>
+										<?php the_post_thumbnail('medium', ['class' => 'blog-detail-main__image', 'alt' => get_the_title()]); ?>
 										<!-- サムネイルがない場合はnoimage画像を表示 -->
 									<?php else : ?>
 										<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />

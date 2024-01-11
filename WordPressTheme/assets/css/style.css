@@ -3220,6 +3220,9 @@ textarea.wpcf7-not-valid,
 	font-weight: 400;
 	line-height: 1;
 	margin-top: 0.25rem;
+}
+
+.voice-card__tag a {
 	padding: 0.5rem 0.71875rem;
 }
 
@@ -4574,6 +4577,11 @@ html {
 
 .voice-card__tag {
 	margin-left: auto;
+	margin-top: 0;
+	margin-top: initial;
+}
+
+.voice-card__tag a {
 	padding: 0.625rem 0.9375rem;
 }
 

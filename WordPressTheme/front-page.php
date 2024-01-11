@@ -22,26 +22,25 @@
             <div class="top-mv__swiper swiper js-mv-swiper">
                 <div class="top-mv__swiper-wrapper swiper-wrapper">
                     <?php
-                    // 最大5枚の画像に対応
-                    for ($i = 1; $i <= 5; $i++) :
-                        // グループフィールド 'slide' + $i（例: 'slide1', 'slide2', ...）からデータを取得
-                        $slide = get_field('slide' . $i);
-                        if ($slide) :
-                            // グループフィールド内のサブフィールドからデータを取得
-                            $pc_src = $slide['slide_pc' . $i];
-                            $sp_src = $slide['slide_sp' . $i];
-                            $alt    = $slide['slide_alt' . $i];
-                            // 両方の画像が設定されている場合のみスライドを表示
-                            if (isset($pc_src) && isset($sp_src)) : ?>
-                                <div class="top-mv__swiper-slide swiper-slide">
-                                    <picture class="top-mv__picture">
-                                        <source srcset="<?php echo $pc_src; ?>" media="(min-width: 768px)" type="image/webp" />
-                                        <img src="<?php echo $sp_src; ?>" alt="<?php echo $alt; ?>" />
-                                    </picture>
-                                </div>
+                    $i = 1; // 初期化
+                    while (true) : // 無限ループ
+                        $slide = get_field('slide' . $i); // スライドデータを取得
+                        if (!$slide) break; // スライドがなければループを抜ける
+                        // サブフィールドからデータを取得
+                        $pc_src = $slide['slide_pc' . $i];
+                        $sp_src = $slide['slide_sp' . $i];
+                        $alt    = $slide['slide_alt' . $i];
+                        // 両方の画像が設定されている場合のみスライドを表示
+                        if (isset($pc_src) && isset($sp_src)) : ?>
+                            <div class="top-mv__swiper-slide swiper-slide">
+                                <picture class="top-mv__picture">
+                                    <source srcset="<?php echo $pc_src; ?>" media="(min-width: 768px)" type="image/webp" />
+                                    <img src="<?php echo $sp_src; ?>" alt="<?php echo $alt; ?>" />
+                                </picture>
+                            </div>
                     <?php endif;
-                        endif;
-                    endfor;
+                        $i++; // インクリメント
+                    endwhile;
                     ?>
                 </div>
             </div>
@@ -87,7 +86,7 @@
                                         <div class="campaign-card__image">
                                             <?php if (has_post_thumbnail()) : ?>
                                                 <!-- サムネイル画像のサイズと属性を指定して表示 -->
-                                                <?php the_post_thumbnail('large', ['width' => '280', 'height' => '188', 'loading' => 'lazy']); ?>
+                                                <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
                                             <?php endif; ?>
                                         </div>
                                         <!-- キャンペーン詳細情報の表示 -->
@@ -111,7 +110,7 @@
                                 </div>
                         <?php endwhile;
                             wp_reset_postdata();
-                        endif;?>
+                        endif; ?>
                     </div>
                 </div>
             </div>
@@ -140,7 +139,7 @@
                 <div class="top-aboutUs__text-wrap">
                     <h3 class="top-aboutUs__sub-head"><span>dive</span>&nbsp;into<br />the<span>&nbsp;ocean</span></h3>
                     <div class="top-aboutUs__content">
-                        <p class="top-aboutUs__text">ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。<br />ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。ここにテキスト</p>
+                        <p class="top-aboutUs__text">海の素晴らしさを全ての人に伝えたいと思っています！初心者から経験者まで、一人ひとりに合った安心・安全なダイビング体験を提供。<br>海の生物との出会いや、息をのむような海底の景観、水中での新しい発見が、あなたを待っています。私たちと一緒に、未知の世界への扉を開いてみませんか？</p>
                         <div class="top-aboutUs__button">
                             <a href="<?php echo esc_url(home_url('/about/')); ?>" class="button">View more<span></span></a>
                         </div>
@@ -198,23 +197,23 @@
                                 <div class="blog-card__img">
                                     <?php if (has_post_thumbnail()) : ?>
                                         <!-- サムネイル画像がある場合、サムネイルを表示 -->
-                                        <?php the_post_thumbnail('large', ['width' => '301', 'height' => '201', 'loading' => 'lazy']); ?>
+                                        <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
                                     <?php else : ?>
                                         <!-- サムネイル画像がない場合、noimage画像を表示 -->
                                         <img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />
                                     <?php endif; ?>
                                 </div>
                                 <div class="blog-card__body">
-                                    <time class="blog-card__date" datetime="<?php echo get_the_date('Y.m.d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
+                                    <time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
                                     <p class="blog-card__title"><?php the_title(); ?></p><!-- 投稿のタイトルを表示 -->
                                     <p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p><!-- 投稿の内容を80語まで表示し、それ以上は'…'で省略 -->
                                 </div>
 
                             </a>
                         </li>
-                    <?php endwhile;?>
-                    <?php wp_reset_postdata();?>
-                <?php endif;?>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                <?php endif; ?>
             </ul>
             <div class="top-blog__button">
                 <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="button">View more<span></span></a>
@@ -258,7 +257,7 @@
                                 </div>
                                 <div class="voice-card__img colorbox js-colorbox">
                                     <?php if (has_post_thumbnail()) : ?>
-                                        <img src="<?php echo the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
+                                        <img src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
                                     <?php endif; ?>
                                 </div>
                             </div>

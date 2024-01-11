@@ -37,22 +37,23 @@
 						if ($the_query->have_posts()) :
 							while ($the_query->have_posts()) : $the_query->the_post();
 						?>
-							<li class="blog-main-menu__list-card blog-card">
-								<a href="<?php the_permalink(); ?>">
-									<figure class="blog-card__img">
-										<?php if (has_post_thumbnail()) : ?>
-											<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="301" height="201" loading="lazy" />
-										<?php else : ?>
-											<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />
-										<?php endif; ?>
-										<figcaption class="blog-card__body">
-											<time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date(); ?></time>
-											<p class="blog-card__title"><?php the_title(); ?></p>
-											<p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p>
-										</figcaption>
-									</figure>
-								</a>
-							</li>
+								<li class="blog-main-menu__list-card blog-card">
+									<a href="<?php the_permalink(); ?>">
+										<figure class="blog-card__img">
+											<?php if (has_post_thumbnail()) : ?>
+												<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="301" height="201" loading="lazy" />
+											<?php else : ?>
+												<!-- サムネイル画像がない場合、noimage画像を表示 -->
+												<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />
+											<?php endif; ?>
+											<figcaption class="blog-card__body">
+												<time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date(); ?></time>
+												<p class="blog-card__title"><?php the_title(); ?></p>
+												<p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p>
+											</figcaption>
+										</figure>
+									</a>
+								</li>
 						<?php
 							endwhile;
 						else :

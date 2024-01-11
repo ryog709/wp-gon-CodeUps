@@ -46,7 +46,7 @@
 						<li class="campaign-card-list__item campaign-card">
 							<figure class="campaign-card__image">
 								<?php if (has_post_thumbnail()) : ?>
-									<img src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+									<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
 								<?php endif; ?>
 							</figure>
 							<div class="campaign-card__body-wrap">
