@@ -242,39 +242,63 @@ jQuery(function ($) {
     $(this).next().slideToggle(600);
     $(this).toggleClass("is-open");
   });
+
+  // コンタクトフォームのバリデーションチェック
   var form = document.querySelector(".js-form");
+  // フォームが存在する場合のみ以下の処理を実行
   if (form) {
+    // 入力値のバリデーションを行う関数
     var validateInput = function validateInput(input) {
+      // 入力値が空白の場合はエラーを表示
       if (!input.value.trim()) {
-        // 空白チェック
         input.classList.add("is-error");
         return false;
       } else {
+        // 入力値が正しい場合はエラー表示を消す
         input.classList.remove("is-error");
         return true;
       }
-    };
+    }; // 必須フィールドを全て選択
+    // ".js-form__error"クラスを持つエラーメッセージ要素を選択
     var errorMessage = document.querySelector(".js-form__error");
     var fields = form.querySelectorAll(".wpcf7-validates-as-required, .wpcf7-textarea");
+    // 各フィールドに対して入力イベントリスナーを追加
     fields.forEach(function (field) {
       field.addEventListener("input", function () {
         validateInput(field);
       });
     });
+    // フォームの送信イベントに対する処理
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var isValidForm = true;
+      e.preventDefault(); // デフォルトの送信処理をキャンセル
+      var isValidForm = true; // フォームのバリデーション状態
+      // 全フィールドのバリデーションを確認
       fields.forEach(function (field) {
         if (!validateInput(field)) {
           isValidForm = false;
         }
       });
+      // フォームのバリデーションが全て正しい場合
       if (isValidForm) {
         errorMessage.classList.remove("is-error");
         // ここでフォームの送信処理を行う
       } else {
+        // バリデーションエラーがある場合はエラーメッセージを表示
         errorMessage.classList.add("is-error");
       }
+    });
+  }
+
+  // 送信ボタン無効化
+  var submit = document.querySelector('.wpcf7-submit');
+  var checkbox = document.querySelector('.form-check [type="checkbox"]');
+  // 送信ボタンとチェックボックスがページに存在するか確認
+  if (submit && checkbox) {
+    // 送信ボタンの初期状態を設定
+    submit.disabled = true;
+    // チェックボックスにイベントリスナーを追加
+    checkbox.addEventListener('change', function () {
+      submit.disabled = !checkbox.checked;
     });
   }
 });

@@ -13,7 +13,10 @@
 }
 
 .tag-item a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     padding: rem(9) rem(11.5);
     transition: 0.3s ease-in-out;
     @include mq("md") {

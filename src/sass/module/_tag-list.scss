@@ -9,6 +9,6 @@
     position: relative;
     @include mq("md") {
         grid-column-gap: rem(32);
-        grid-template-columns: repeat(5, rem(162));
+        grid-template-columns: repeat(auto-fill, minmax(auto, rem(162)));
     }
 }

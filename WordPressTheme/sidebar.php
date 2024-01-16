@@ -3,7 +3,7 @@
 	<div class="blog-side-menu__inner">
 		<!-- 人気記事セクション -->
 		<div class="blog-side-menu__wrap blog-side-menu-popular">
-			<h3 class="blog-side-menu-popular__title side-menu-title">人気記事</h3>
+			<h2 class="blog-side-menu-popular__title side-menu-title">人気記事</h2>
 			<?php
 			$popular_posts       = new WP_Query(array(
 				'posts_per_page' => 3, // 表示したい記事の数
@@ -18,7 +18,7 @@
 						<a href="<?php the_permalink(); ?>">
 							<div class="popular-link__image">
 								<?php if (has_post_thumbnail()) : ?>
-									<?php the_post_thumbnail('thumbnail', array('loading' => 'lazy')); ?>
+									<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="121" height="90" loading="lazy" />
 								<?php else : ?>
 									<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="121" height="90" loading="lazy" />
 								<?php endif; ?>
@@ -36,11 +36,11 @@
 
 		<!-- blog-side-menu-review -->
 		<div class="blog-side-menu__wrap blog-side-menu-review">
-			<h3 class="blog-side-menu-review__title side-menu-title">口コミ</h3>
+			<h2 class="blog-side-menu-review__title side-menu-title">口コミ</h2>
 			<?php
 			$latest_reviews      = new WP_Query(array(
 				'post_type' 	 => 'voice', // カスタム投稿タイプ
-				'posts_per_page' =>1         // 投稿数を設定
+				'posts_per_page' => 1         // 投稿数を設定
 			));
 
 			if ($latest_reviews->have_posts()) :
@@ -68,7 +68,7 @@
 
 		<!-- blog-side-menu-campaign -->
 		<div class="blog-side-menu__wrap blog-side-menu-campaign">
-			<h3 class="blog-side-menu-campaign__title side-menu-title">キャンペーン</h3>
+			<h2 class="blog-side-menu-campaign__title side-menu-title">キャンペーン</h2>
 			<?php
 			$latest_campaigns    = new WP_Query(array(
 				'post_type'	     => 'campaign', // カスタム投稿タイプを指定
@@ -110,7 +110,7 @@
 
 		<!-- blog-side-menu-archive -->
 		<div class="blog-side-menu__wrap blog-side-menu-archive">
-			<h3 class="blog-side-menu-archive__title side-menu-title">アーカイブ</h3>
+			<h2 class="blog-side-menu-archive__title side-menu-title">アーカイブ</h2>
 			<ul class="blog-side-menu-archive__list">
 				<?php
 				// データベースから公開されている投稿の年を取得

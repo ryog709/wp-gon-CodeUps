@@ -47,7 +47,7 @@
 												<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />
 											<?php endif; ?>
 											<figcaption class="blog-card__body">
-												<time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date(); ?></time>
+												<time class="blog-card__date" datetime="<?php echo get_the_time('Y-m-d'); ?>"><?php echo get_the_time('Y.m.d'); ?></time>
 												<p class="blog-card__title"><?php the_title(); ?></p>
 												<p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p>
 											</figcaption>

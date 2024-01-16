@@ -52,41 +52,43 @@
     </section>
 
     <!-- top-campaign -->
-    <section class="top-campaign layout-top-campaign">
-        <div class="top-campaign__inner inner">
-            <div class="top-campaign__header">
-                <div class="top-campaign__title-wrap section-title">
-                    <span class="section-title__sub">campaign</span>
-                    <h2 class="section-title__main">キャンペーン</h2>
+    <?php
+    // 新しいWP_Queryインスタンスを作成し、'campaign'カスタム投稿タイプの投稿を取得
+    $campaign_query      = new WP_Query([
+        'post_type'      => 'campaign', // カスタム投稿タイプを指定
+        'post_status'    => 'publish',  // 公開された投稿のみ
+        'posts_per_page' => 16,         // 最大16件の投稿を表示
+        'orderby'        => "rand"      // ランダムな順序で投稿を取得
+    ]);
+    // 投稿があるかどうかをチェック
+    if ($campaign_query->have_posts()) : ?>
+        <section class="top-campaign layout-top-campaign">
+            <div class="top-campaign__inner inner">
+                <div class="top-campaign__header">
+                    <div class="top-campaign__title-wrap section-title">
+                        <span class="section-title__sub">campaign</span>
+                        <h2 class="section-title__main">キャンペーン</h2>
+                    </div>
+                    <div class="top-campaign__swiper-buttons">
+                        <div class="top-campaign__swiper-button-prev swiper-button-prev"></div>
+                        <div class="top-campaign__swiper-button-next swiper-button-next"></div>
+                    </div>
                 </div>
-                <div class="top-campaign__swiper-buttons">
-                    <div class="top-campaign__swiper-button-prev swiper-button-prev"></div>
-                    <div class="top-campaign__swiper-button-next swiper-button-next"></div>
-                </div>
-            </div>
-            <div class="top-campaign__swiper-container">
-                <div class="top-campaign__swiper swiper js-card-swiper">
-                    <div class="top-campaign__swiper-wrapper swiper-wrapper">
-                        <?php
-                        // 新しいWP_Queryインスタンスを作成し、'campaign'カスタム投稿タイプの投稿を取得
-                        $campaign_query      = new WP_Query([
-                            'post_type'      => 'campaign', // カスタム投稿タイプを指定
-                            'post_status'    => 'publish',  // 公開された投稿のみ
-                            'posts_per_page' => 16,         // 最大16件の投稿を表示
-                            'orderby'        => "rand"      // ランダムな順序で投稿を取得
-                        ]);
-                        // 投稿があるかどうかをチェック
-                        if ($campaign_query->have_posts()) :
-                            // 各投稿に対してループ
-                            while ($campaign_query->have_posts()) : $campaign_query->the_post();
-                        ?>
+                <div class="top-campaign__swiper-container">
+                    <div class="top-campaign__swiper swiper js-card-swiper">
+                        <div class="top-campaign__swiper-wrapper swiper-wrapper">
+                            <!-- 各投稿に対してループ -->
+                            <?php while ($campaign_query->have_posts()) : $campaign_query->the_post(); ?>
                                 <div class="top-campaign__swiper-slide swiper-slide">
                                     <figure class="top-campaign__swiper-card campaign-card">
                                         <!-- 投稿のサムネイルを表示 -->
                                         <div class="campaign-card__image">
                                             <?php if (has_post_thumbnail()) : ?>
                                                 <!-- サムネイル画像のサイズと属性を指定して表示 -->
-                                                <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
+                                                <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+                                            <?php else : ?>
+                                                <!-- サムネイルがない場合の代替画像 -->
+                                                <img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="280" height="188" loading="lazy" />
                                             <?php endif; ?>
                                         </div>
                                         <!-- キャンペーン詳細情報の表示 -->
@@ -108,17 +110,17 @@
                                         </figcaption>
                                     </figure>
                                 </div>
-                        <?php endwhile;
-                            wp_reset_postdata();
-                        endif; ?>
+                            <?php endwhile; ?>
+                        </div>
                     </div>
                 </div>
+                <div class="top-campaign__button">
+                    <a href="<?php echo esc_url(home_url('/campaign/')); ?>" class="button">View more<span></span></a>
+                </div>
             </div>
-            <div class="top-campaign__button">
-                <a href="<?php echo esc_url(home_url('/campaign/')); ?>" class="button">View more<span></span></a>
-            </div>
-        </div>
-    </section>
+        </section>
+    <?php endif;
+    wp_reset_postdata(); ?>
 
     <!-- top-aboutUs -->
     <section class="top-aboutUs layout-top-aboutUs">
@@ -172,76 +174,73 @@
     </section>
 
     <!-- top-blog -->
-    <section class="top-blog layout-top-blog">
-        <div class="top-blog__inner">
-            <div class="top-blog__title-wrap section-title">
-                <span class="section-title__sub section-title__sub--white">blog</span>
-                <h2 class="section-title__main section-title__main--white">ブログ</h2>
-            </div>
-            <ul class="top-blog__cards blog-cards">
-                <?php
-                // WordPressのカスタムクエリを設定し、ブログ投稿を取得
-                $blog_query = new WP_Query([
-                    'post_type'      => 'post',    // 投稿タイプを'投稿'に指定
-                    'post_status'    => 'publish', // 公開された投稿のみ
-                    'posts_per_page' => 3,         // 表示する投稿数
-                    'order'          => 'DESC'     // 降順に並べる
-                ]);
-                // 投稿がある場合の処理
-                if ($blog_query->have_posts()) :
-                    // 各投稿に対するループ
-                    while ($blog_query->have_posts()) : $blog_query->the_post();
-                ?>
+    <?php
+    // WordPressのカスタムクエリを設定し、ブログ投稿を取得
+    $blog_query = new WP_Query([
+        'post_type'      => 'post',    // 投稿タイプを'投稿'に指定
+        'post_status'    => 'publish', // 公開された投稿のみ
+        'posts_per_page' => 3,         // 表示する投稿数
+        'order'          => 'DESC'     // 降順に並べる
+    ]);
+    // 投稿がある場合の処理
+    if ($blog_query->have_posts()) : ?>
+        <section class="top-blog layout-top-blog">
+            <div class="top-blog__inner">
+                <div class="top-blog__title-wrap section-title">
+                    <span class="section-title__sub section-title__sub--white">blog</span>
+                    <h2 class="section-title__main section-title__main--white">ブログ</h2>
+                </div>
+                <ul class="top-blog__cards blog-cards">
+                    <!-- /各投稿に対するループ -->
+                    <?php while ($blog_query->have_posts()) : $blog_query->the_post(); ?>
                         <li class="blog-cards__item blog-card">
                             <a href="<?php the_permalink(); ?>"> <!-- 個別投稿へのリンク -->
                                 <div class="blog-card__img">
                                     <?php if (has_post_thumbnail()) : ?>
                                         <!-- サムネイル画像がある場合、サムネイルを表示 -->
-                                        <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
+                                        <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
                                     <?php else : ?>
                                         <!-- サムネイル画像がない場合、noimage画像を表示 -->
                                         <img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="301" height="201" loading="lazy" />
                                     <?php endif; ?>
                                 </div>
                                 <div class="blog-card__body">
-                                    <time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
+                                    <time class="blog-card__date" datetime="<?php echo get_the_time('Y-m-d'); ?>"><?php echo get_the_time('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
                                     <p class="blog-card__title"><?php the_title(); ?></p><!-- 投稿のタイトルを表示 -->
                                     <p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p><!-- 投稿の内容を80語まで表示し、それ以上は'…'で省略 -->
                                 </div>
-
                             </a>
                         </li>
                     <?php endwhile; ?>
-                    <?php wp_reset_postdata(); ?>
-                <?php endif; ?>
-            </ul>
-            <div class="top-blog__button">
-                <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="button">View more<span></span></a>
+                </ul>
+                <div class="top-blog__button">
+                    <a href="<?php echo esc_url(home_url('/blog/')); ?>" class="button">View more<span></span></a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php endif;
+    wp_reset_postdata(); ?>
 
     <!-- top-voice -->
-    <section class="top-voice layout-top-voice">
-        <div class="top-voice__inner inner">
-            <div class="top-voice__title-wrap section-title">
-                <span class="section-title__sub">voice</span>
-                <h2 class="section-title__main">お客様の声</h2>
-            </div>
-            <ul class="top-voice__cards voice-cards">
-                <?php
-                // カスタム投稿タイプ 'voice' から投稿を取得するためのクエリ設定
-                $voice_query         = new WP_Query([
-                    'post_type'      => 'voice',    // カスタム投稿タイプ 'voice' を指定
-                    'post_status'    => 'publish',  // 公開された投稿のみ取得
-                    'posts_per_page' => 2,          // 一度に表示する投稿数
-                    'orderby'        => "rand"      // 投稿をランダムに表示
-                ]);
-                // 投稿が存在する場合の処理
-                if ($voice_query->have_posts()) :
-                    // 投稿をループして表示
-                    while ($voice_query->have_posts()) : $voice_query->the_post();
-                ?>
+    <?php
+    // カスタム投稿タイプ 'voice' から投稿を取得するためのクエリ設定
+    $voice_query         = new WP_Query([
+        'post_type'      => 'voice',    // カスタム投稿タイプ 'voice' を指定
+        'post_status'    => 'publish',  // 公開された投稿のみ取得
+        'posts_per_page' => 2,          // 一度に表示する投稿数
+        'orderby'        => "rand"      // 投稿をランダムに表示
+    ]);
+    // 投稿が存在する場合の処理
+    if ($voice_query->have_posts()) : ?>
+        <section class="top-voice layout-top-voice">
+            <div class="top-voice__inner inner">
+                <div class="top-voice__title-wrap section-title">
+                    <span class="section-title__sub">voice</span>
+                    <h2 class="section-title__main">お客様の声</h2>
+                </div>
+                <ul class="top-voice__cards voice-cards">
+                    <!--  投稿をループして表示 -->
+                    <?php while ($voice_query->have_posts()) : $voice_query->the_post(); ?>
                         <li class="voice-cards__item voice-card">
                             <div class="voice-card__container">
                                 <div class="voice-card__wrap">
@@ -258,20 +257,23 @@
                                 <div class="voice-card__img colorbox js-colorbox">
                                     <?php if (has_post_thumbnail()) : ?>
                                         <img src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="151" height="117" loading="lazy" />
+                                    <?php else : ?>
+                                        <!-- サムネイルがない場合の代替画像 -->
+                                        <img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="151" height="117" loading="lazy" />
                                     <?php endif; ?>
                                 </div>
                             </div>
                             <p class="voice-card__text"><?php echo wp_trim_words(get_field('voice_text'), 170, '…'); ?></p><!-- 投稿の内容を160単語でトリミングして表示 -->
                         </li>
-                <?php endwhile;
-                    wp_reset_postdata();
-                endif; ?>
-            </ul>
-            <div class="top-voice__button">
-                <a href="<?php echo esc_url(home_url('/voice/')); ?>" class="button">View more<span></span></a>
+                    <?php endwhile; ?>
+                </ul>
+                <div class="top-voice__button">
+                    <a href="<?php echo esc_url(home_url('/voice/')); ?>" class="button">View more<span></span></a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php endif;
+    wp_reset_postdata(); ?>
 
     <!-- top-price -->
     <section class="top-price layout-top-price">

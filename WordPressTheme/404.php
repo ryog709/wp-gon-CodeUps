@@ -3,7 +3,6 @@
     <!-- breadcrumbs -->
     <div class="breadcrumbs breadcrumbs--color-reverse layout-breadcrumbs layout-breadcrumbs--large">
         <div class="breadcrumbs__inner inner">
-            <!-- Breadcrumb NavXT 7.1.0 -->
             <?php if (function_exists('bcn_display')) {
                 bcn_display();
             } ?>

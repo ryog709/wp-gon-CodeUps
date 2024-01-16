@@ -80,10 +80,10 @@ $price_course4 = $price . '#price4';
                 </a>
             </div>
             <div class="footer__sns-icon-wrap">
-                <a href="https://www.facebook.com" class="footer__sns-icon" target="_blank" rel="noopener">
+                <a href="https://www.facebook.com" class="footer__sns-icon" target="_blank" rel="noopener noreferrer">
                     <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/FacebookLogo.svg" alt="FacebookLogo" width="24" height="24" loading="lazy" />
                 </a>
-                <a href="https://www.instagram.com" class="footer__sns-icon" target="_blank" rel="noopener">
+                <a href="https://www.instagram.com" class="footer__sns-icon" target="_blank" rel="noopener noreferrer">
                     <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/InstagramLogo.svg" alt="InstagramLogo" width="24" height="24" loading="lazy" />
                 </a>
             </div>

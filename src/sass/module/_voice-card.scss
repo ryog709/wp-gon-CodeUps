@@ -8,10 +8,6 @@
     padding: rem(15) rem(16) rem(24);
     @include mq("md") {
         padding: rem(24);
-        display: grid;
-        grid-template-rows: subgrid;
-        grid-row: span 2;
-        gap: 0;
     }
 }
 
@@ -82,6 +78,13 @@
     @include mq("md") {
         width: 39.473%;
     }
+}
+
+.voice-card__img .noimage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
 }
 
 .voice-card__img img {
