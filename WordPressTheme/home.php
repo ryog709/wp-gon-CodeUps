@@ -35,7 +35,7 @@
 											<?php endif; ?>
 											<figcaption class="blog-card__body">
 												<!-- 投稿日 -->
-												<time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time>
+												<time class="blog-card__date" datetime="<?php echo get_the_time('Y-m-d'); ?>"><?php echo get_the_time('Y.m.d'); ?></time>
 												<!-- 投稿タイトル -->
 												<p class="blog-card__title"><?php the_title(); ?></p>
 												<!-- 投稿内容の一部 -->
@@ -48,7 +48,7 @@
 						<?php endwhile;
 						else :
 							// 投稿がない場合のメッセージを表示
-							echo '<li>投稿記事がありません。</li>';
+							echo '<p class="blog-cards__no-posts no-posts-text">投稿記事がありません。</p>';
 						endif; ?>
 					</ul>
 

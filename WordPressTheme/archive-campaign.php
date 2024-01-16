@@ -128,7 +128,7 @@
 				<?php endwhile;
 				else :
 					// 投稿がない場合のメッセージを表示
-					echo '<li>投稿記事がありません。</li>';
+					echo '<p class="campaign-card-contents__no-posts no-posts-text">投稿記事がありません。</p>';
 				endif;
 				?>
 			</ul>

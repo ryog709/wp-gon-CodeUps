@@ -2282,6 +2282,11 @@ textarea.wpcf7-not-valid,
 	width: min(100%, 34.375rem);
 }
 
+.no-posts-text {
+	color: #0d2936;
+	font-size: 1rem;
+}
+
 .notfound__inner {
 	position: relative;
 }

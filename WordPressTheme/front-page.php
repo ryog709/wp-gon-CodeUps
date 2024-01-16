@@ -205,7 +205,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <div class="blog-card__body">
-                                    <time class="blog-card__date" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
+                                    <time class="blog-card__date" datetime="<?php echo get_the_time('Y-m-d'); ?>"><?php echo get_the_time('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
                                     <p class="blog-card__title"><?php the_title(); ?></p><!-- 投稿のタイトルを表示 -->
                                     <p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p><!-- 投稿の内容を80語まで表示し、それ以上は'…'で省略 -->
                                 </div>
