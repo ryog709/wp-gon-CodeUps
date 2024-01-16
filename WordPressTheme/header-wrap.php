@@ -5,10 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no" />
-
-    <!-- meta情報 -->
-    <title>CodeUps_gon</title>
-    <meta name="description" content="これはディスクリプションです" />
     <meta name="keywords" content="CodeUps、diving" />
     <link rel="shortcut icon" href="<?php echo get_theme_file_uri(); ?>/assets/images/common/favicon.ico" type="image/x-icon" />
     <?php wp_head(); ?>
@@ -47,11 +43,19 @@ $price_course4 = $price . '#price4';
         <header class="header layout-header js-header">
             <div class="header__inner">
                 <div class="header__content">
-                    <h1 class="header__logo">
-                        <a href="<?php echo $top; ?>">
-                            <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/codeups-logo.svg" alt="CodeUps" />
-                        </a>
-                    </h1>
+                    <?php if (is_front_page()) : ?>
+                        <h1 class="header__logo">
+                            <a href="<?php echo $top; ?>">
+                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/codeups-logo.svg" alt="CodeUps" />
+                            </a>
+                        </h1>
+                    <?php else : ?>
+                        <div class="header__logo">
+                            <a href="<?php echo $top; ?>">
+                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/codeups-logo.svg" alt="CodeUps" />
+                            </a>
+                        </div>
+                    <?php endif; ?>
                     <nav class="header__nav">
                         <ul class="header__nav-items u-desktop">
                             <li class="header__nav-item">

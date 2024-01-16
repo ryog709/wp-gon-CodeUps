@@ -28,6 +28,13 @@
     }
 }
 
+.campaign-card__image .noimage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
 .campaign-card__body-wrap {
     display: flex;
     flex-direction: column;
@@ -60,7 +67,7 @@
     padding: initial;
 }
 
-.campaign-card__tag span {
+.campaign-card__tag a {
     display: inline-flex;
     align-items: center;
     font-size: rem(12);

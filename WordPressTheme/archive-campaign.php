@@ -46,6 +46,9 @@
 								// もし投稿にサムネイル画像があれば表示
 								if (has_post_thumbnail()) : ?>
 									<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+								<?php else : ?>
+									<!-- サムネイルがない場合の代替画像 -->
+									<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="280" height="188" loading="lazy" />
 								<?php endif; ?>
 							</figure>
 							<div class="campaign-card__body-wrap">
@@ -115,15 +118,19 @@
 										// キャンペーン追加情報を表示
 										the_field('campaign_info'); ?>
 									</p>
-									<?php endif; ?>
-									<div class="campaign-card__button">
-										<a href="<?php echo esc_url(home_url('/contact/')); ?>" class="button">Contact us<span></span></a>
-									</div>
+								<?php endif; ?>
+								<div class="campaign-card__button">
+									<a href="<?php echo esc_url(home_url('/contact/')); ?>" class="button">Contact us<span></span></a>
+								</div>
 								</div>
 							</div>
 						</li>
 				<?php endwhile;
-				endif; ?>
+				else :
+					// 投稿がない場合のメッセージを表示
+					echo '<li>投稿記事がありません。</li>';
+				endif;
+				?>
 			</ul>
 
 			<!-- wp-pagenavi -->

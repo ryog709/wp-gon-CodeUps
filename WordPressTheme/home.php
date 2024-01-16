@@ -45,10 +45,11 @@
 									</a>
 								</li>
 								<!-- 各々の記事に関する処理 -->
-							<?php endwhile; ?>
-						<?php else : ?>
-							<!-- 記事が1件も見つからなかったときの処理 -->
-						<?php endif; ?>
+						<?php endwhile;
+						else :
+							// 投稿がない場合のメッセージを表示
+							echo '<li>投稿記事がありません。</li>';
+						endif; ?>
 					</ul>
 
 					<!-- wp-pagenavi -->

@@ -158,17 +158,17 @@ jQuery(function ($) {
         $("#" + number).addClass("is-active");
     });
 
-        //別ページからタブメニューへダイレクトリンク
+    //別ページからタブメニューへダイレクトリンク
     $(document).ready(function() {
-    var hash = window.location.hash;
-    if (hash) {
-        // ハッシュに基づいてタブをアクティブにする
-        $('.js-tab-menu').removeClass('is-active');
-        $('.js-tab-content').removeClass('is-active');
-        $('.js-tab-menu[data-number="' + hash.substring(1) + '"]').addClass('is-active');
-        $(hash).addClass('is-active');
-    }
-});
+        var hash = window.location.hash;
+        if (hash) {
+            // ハッシュに基づいてタブをアクティブにする
+            $('.js-tab-menu').removeClass('is-active');
+            $('.js-tab-content').removeClass('is-active');
+            $('.js-tab-menu[data-number="' + hash.substring(1) + '"]').addClass('is-active');
+            $(hash).addClass('is-active');
+        }
+    });
 
     // アーカイブアコーディオンメニュー
     $(".js-blog-side-menu-archive-list-item:first .js-blog-side-menu-archive-month-wrap").show();
@@ -186,42 +186,66 @@ jQuery(function ($) {
         $(this).toggleClass("is-open");
     });
 
+
+    // コンタクトフォームのバリデーションチェック
     const form = document.querySelector(".js-form");
+    // フォームが存在する場合のみ以下の処理を実行
     if (form) {
-    const errorMessage = document.querySelector(".js-form__error");
-    function validateInput(input) {
-        if (!input.value.trim()) {
-            // 空白チェック
-            input.classList.add("is-error");
-            return false;
-        } else {
-            input.classList.remove("is-error");
-            return true;
+        // ".js-form__error"クラスを持つエラーメッセージ要素を選択
+        const errorMessage = document.querySelector(".js-form__error");
+        // 入力値のバリデーションを行う関数
+        function validateInput(input) {
+            // 入力値が空白の場合はエラーを表示
+            if (!input.value.trim()) {
+                input.classList.add("is-error");
+                return false;
+            } else {
+                // 入力値が正しい場合はエラー表示を消す
+                input.classList.remove("is-error");
+                return true;
+            }
         }
-    }
-
-    const fields = form.querySelectorAll(".wpcf7-validates-as-required, .wpcf7-textarea");
-    fields.forEach((field) => {
-        field.addEventListener("input", () => {
-            validateInput(field);
-        });
-    });
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let isValidForm = true;
+        // 必須フィールドを全て選択
+        const fields = form.querySelectorAll(".wpcf7-validates-as-required, .wpcf7-textarea");
+        // 各フィールドに対して入力イベントリスナーを追加
         fields.forEach((field) => {
-            if (!validateInput(field)) {
-                isValidForm = false;
+            field.addEventListener("input", () => {
+                validateInput(field);
+            });
+        });
+        // フォームの送信イベントに対する処理
+        form.addEventListener("submit", (e) => {
+            e.preventDefault(); // デフォルトの送信処理をキャンセル
+            let isValidForm = true; // フォームのバリデーション状態
+            // 全フィールドのバリデーションを確認
+            fields.forEach((field) => {
+                if (!validateInput(field)) {
+                    isValidForm = false;
+                }
+            });
+            // フォームのバリデーションが全て正しい場合
+            if (isValidForm) {
+                errorMessage.classList.remove("is-error");
+                // ここでフォームの送信処理を行う
+            } else {
+                // バリデーションエラーがある場合はエラーメッセージを表示
+                errorMessage.classList.add("is-error");
             }
         });
-        if (isValidForm) {
-            errorMessage.classList.remove("is-error");
-            // ここでフォームの送信処理を行う
-        } else {
-            errorMessage.classList.add("is-error");
-        }
-    });
+    }
+
+
+    // 送信ボタン無効化
+    const submit = document.querySelector('.wpcf7-submit');
+    const checkbox = document.querySelector('.form-check [type="checkbox"]');
+    // 送信ボタンとチェックボックスがページに存在するか確認
+    if (submit && checkbox) {
+        // 送信ボタンの初期状態を設定
+        submit.disabled = true;
+        // チェックボックスにイベントリスナーを追加
+        checkbox.addEventListener('change', () => {
+            submit.disabled = !checkbox.checked;
+        });
     }
 
 
