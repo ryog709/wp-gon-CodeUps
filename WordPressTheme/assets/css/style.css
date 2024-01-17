@@ -309,7 +309,7 @@ a {
 	background: url(../images/common/voice-fish.svg) center center/contain no-repeat;
 	content: "";
 	height: 3.4375rem;
-	left: calc(50% - min(46vw, 38.75rem));
+	left: calc(50% - min(48vw, 38.75rem));
 	position: absolute;
 	top: -1.4375rem;
 	width: 7.5rem;
@@ -317,18 +317,11 @@ a {
 }
 
 .aboutUs__container {
-	grid-row-gap: 2.5rem;
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 1fr auto;
+	position: relative;
 }
 
 .aboutUs__image-box {
-	grid-area: 1/1/2/2;
-}
-
-.aboutUs__image-left {
-	display: none;
+	position: relative;
 }
 
 .aboutUs__image-right img {
@@ -339,16 +332,21 @@ a {
 	width: 100%;
 }
 
+.aboutUs__text-box {
+	margin-top: 2.625rem;
+	z-index: 2;
+}
+
 .aboutUs__sub-head {
 	color: #fff;
 	font-family: "Gotu", sans-serif;
 	font-size: 2.5rem;
 	font-size: max(2.5rem, min(6.6666666667vw, 5rem));
 	font-weight: 400;
-	grid-area: 1/1/2/2;
+	left: 1.5rem;
 	line-height: 1;
-	padding-left: 1.4375rem;
-	padding-top: 1.5625rem;
+	position: absolute;
+	top: 1.5rem;
 }
 
 .aboutUs__sub-head span {
@@ -2842,16 +2840,12 @@ textarea.wpcf7-not-valid,
 }
 
 .top-aboutUs__image-box {
-	aspect-ratio: 345/212;
-	display: grid;
-	grid-template-columns: repeat(2, 18.55%) repeat(3, 1fr);
-	grid-template-rows: 12.26% repeat(3, 1fr) 8.49%;
-	height: auto;
-	width: auto;
+	position: relative;
 }
 
 .top-aboutUs__image-left {
-	grid-area: 1/1/5/3;
+	position: relative;
+	width: 37.10144%;
 	z-index: 1;
 }
 
@@ -2864,7 +2858,10 @@ textarea.wpcf7-not-valid,
 }
 
 .top-aboutUs__image-right {
-	grid-area: 2/2/6/6;
+	margin-left: auto;
+	margin-top: -48.7%;
+	position: relative;
+	width: 81.44927%;
 }
 
 .top-aboutUs__image-right img {
@@ -3497,28 +3494,9 @@ html {
 	width: 18.8125rem;
 }
 
-.aboutUs__container {
-	grid-row-gap: 0;
-	display: grid;
-	grid-template-columns: repeat(3, 18.55%) 3.7% repeat(2, 18.51%) 3.7%;
-	grid-template-rows: 12.26% 18.15% repeat(2, 1fr) 8.49%;
-	max-width: none;
-	max-width: initial;
-}
-
-.aboutUs__image-box {
-	aspect-ratio: 1080/661;
-	display: grid;
-	grid-area: 1/1/6/8;
-	grid-template-columns: repeat(2, 18.55%) repeat(3, 1fr);
-	grid-template-rows: 12.26% repeat(3, 1fr) 8.49%;
-	height: auto;
-	width: auto;
-}
-
 .aboutUs__image-left {
-	display: block;
-	grid-area: 1/1/5/3;
+	position: relative;
+	width: 37.10144%;
 	z-index: 1;
 }
 
@@ -3531,26 +3509,33 @@ html {
 }
 
 .aboutUs__image-right {
-	grid-area: 2/2/6/6;
+	margin-left: auto;
+	margin-top: -49%;
+	width: 81.44927%;
+}
+
+.aboutUs__text-box {
+	display: flex;
+	gap: 2.5rem;
+	left: 57.5%;
+	position: absolute;
+	top: 39%;
+	transform: translate(-50%, -50%);
+	width: 77.7777777778%;
 }
 
 .aboutUs__sub-head {
-	grid-area: 3/2/5/4;
 	line-height: 1.25;
-	padding-left: 0;
-	padding-left: initial;
-	padding-top: 0;
-	padding-top: initial;
+	min-width: 25rem;
+	position: static;
 	text-align: justify;
-	z-index: 1;
 }
 
 .aboutUs__text {
 	color: #fff;
-	grid-area: 3/4/5/7;
-	margin-left: 2.5rem;
-	max-width: 400px;
-	padding-top: 50px;
+	max-width: 25rem;
+	padding-top: 3.125rem;
+	width: 100%;
 }
 
 .blog-card__body {
@@ -4370,32 +4355,21 @@ html {
 }
 
 .top-aboutUs__container {
-	align-items: center;
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 1fr;
-	justify-items: center;
 	margin-top: 2.5rem;
-	place-items: center;
-}
-
-.top-aboutUs__image-box {
-	aspect-ratio: 1080/661;
-	grid-area: 1/1/2/2;
+	position: relative;
 }
 
 .top-aboutUs__text-wrap {
 	display: flex;
 	gap: 2.5rem;
-	grid-area: 1/1/2/2;
-	margin-left: auto;
-	margin-right: 2.5rem;
+	left: 57.5%;
 	margin-top: 0;
 	margin-top: initial;
-	max-width: 52.5rem;
-	padding-bottom: 1.25rem;
-	width: 100%;
-	z-index: 4;
+	position: absolute;
+	top: 48%;
+	transform: translate(-50%, -50%);
+	width: 77.7777777778%;
+	z-index: 2;
 }
 
 .top-aboutUs__sub-head {
