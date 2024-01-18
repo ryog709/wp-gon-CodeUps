@@ -74,7 +74,7 @@
 								</div>
 							</div>
 							<!-- カスタムフィールド 'voice_text' からテキストを表示 -->
-							<p class="voice-card__text"><?php the_field('voice_text'); ?></p>
+							<p class="voice-card__text"><?php echo wp_trim_words(get_field('voice_text'), 170, '…'); ?></p><!-- 投稿の内容を160単語でトリミングして表示 -->
 						</li>
 				<?php endwhile;
 				else :

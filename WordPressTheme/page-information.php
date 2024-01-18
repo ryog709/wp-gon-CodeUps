@@ -42,7 +42,7 @@
                                 <p class="information-tab__text">ブランクダイバー、ライセンスを取り立ての方も安心！沖縄本島を代表する「青の洞窟」（真栄田岬）やケラマ諸島などメジャーなポイントはモチロンのこと、最北端「辺戸岬」や最南端の「大渡海岸」等もご用意！</p>
                             </div>
                             <figure class="information-tab__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information-tab02.webp" alt="ダイビング講習の様子" width="297" height="189" loading="lazy" />
+                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information-tab02.webp" alt="熱帯魚の群れ" width="297" height="189" loading="lazy" />
                             </figure>
                         </div>
                     </li>
@@ -53,7 +53,7 @@
                                 <p class="information-tab__text">ブランクダイバー、ライセンスを取り立ての方も安心！沖縄本島を代表する「青の洞窟」（真栄田岬）やケラマ諸島などメジャーなポイントはモチロンのこと、最北端「辺戸岬」や最南端の「大渡海岸」等もご用意！</p>
                             </div>
                             <figure class="information-tab__image">
-                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information-tab03.webp" alt="ダイビング講習の様子" width="297" height="189" loading="lazy" />
+                                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information-tab03.webp" alt="熱帯魚" width="297" height="189" loading="lazy" />
                             </figure>
                         </div>
                     </li>
