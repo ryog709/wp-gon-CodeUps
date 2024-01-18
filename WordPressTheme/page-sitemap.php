@@ -80,7 +80,7 @@ $price_course4 = $price . '#price4';
                             <li class="global-menu__item"><a href="<?php echo $price_course1; ?>">ライセンス講習</a></li>
                             <li class="global-menu__item"><a href="<?php echo $price_course2; ?>">体験ダイビング</a></li>
                             <li class="global-menu__item"><a href="<?php echo $price_course3; ?>">ファンダイビング</a></li>
-                            <li class="global-menu__item"><a href="<?php echo $price_course4; ?>">スペシャルダイビング</a></li>
+                            <li class="global-menu__item"><a href="<?php echo $price_course4; ?>">スペシャル<br class="u-mobile">ダイビング</a></li>
                         </ul>
                     </div>
                     <div class="global-menu__wrap">
