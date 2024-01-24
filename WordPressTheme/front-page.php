@@ -252,7 +252,16 @@
                                         <?php endif; ?>
                                         <p class="voice-card__tag"><?php the_terms(get_the_ID(), 'voice_category'); ?></p>
                                     </div>
-                                    <p class="voice-card__title"><?php the_title(); ?></p>
+                                    <?php
+                                    // タイトルを取得
+                                    $title = get_the_title();
+                                    // タイトルが20文字以上なら切り取る
+                                    if (mb_strlen($title) > 20) {
+                                        $title = mb_substr($title, 0, 20) . '...';
+                                    }
+                                    ?>
+                                    <!-- 投稿のタイトルを表示 -->
+                                    <p class="voice-card__title"><?php echo $title; ?></p>
                                 </div>
                                 <div class="voice-card__img colorbox js-colorbox">
                                     <?php if (has_post_thumbnail()) : ?>
