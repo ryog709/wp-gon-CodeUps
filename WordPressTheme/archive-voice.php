@@ -19,7 +19,7 @@
 			<ul class="tag__list tag-list">
 				<!-- 「ALL」タグのリンクを表示する -->
 				<li class="tag-list__item tag-item is-color">
-					<a href="<?php echo get_post_type_archive_link('voice') ?>">ALL</a>
+					<span>ALL</span>
 				</li>
 				<!-- voice_categoryという名前のカテゴリーを取得する -->
 				<?php $voice_terms = get_terms('voice_category', array('hide_empty' => false)) ?>
@@ -37,8 +37,9 @@
 	<!-- campaign-card-contents -->
 	<section class="voice layout-voice">
 		<div class="voice__inner inner">
-			<ul class="voice__cards voice-cards">
-				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<?php if (have_posts()) : ?>
+				<ul class="voice__cards voice-cards">
+					<?php while (have_posts()) : the_post(); ?>
 						<li class="voice-cards__item voice-card">
 							<div class="voice-card__container">
 								<div class="voice-card__wrap">
@@ -76,18 +77,17 @@
 							<!-- カスタムフィールド 'voice_text' を表示 -->
 							<p class="voice-card__text"><?php the_field('voice_text'); ?></p>
 						</li>
-				<?php endwhile;
-				else :
-					// 投稿がない場合のメッセージを表示
-					echo '<p class="voice-cards__no-posts no-posts-text">投稿記事がありません。</p>';
-				endif;
-				?>
-			</ul>
+					<?php endwhile; ?>
+				</ul>
 		</div>
 
 		<!-- wp-pagenavi -->
-		<div class="voice__wp-pagenavi wp-pagenavi">
+		<div class="voice__wp-pagenavi">
 			<?php wp_pagenavi(); ?>
 		</div>
+	<?php else : ?>
+		<!-- 投稿がない場合のメッセージを表示 -->
+		<p class="blog-cards__no-posts no-posts-text">投稿記事がありません。</p>
+	<?php endif; ?>
 	</section>
 	<?php get_footer(); ?>

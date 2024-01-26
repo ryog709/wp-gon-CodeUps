@@ -56,7 +56,6 @@
     // 新しいWP_Queryインスタンスを作成し、'campaign'カスタム投稿タイプの投稿を取得
     $campaign_query      = new WP_Query([
         'post_type'      => 'campaign', // カスタム投稿タイプを指定
-        'post_status'    => 'publish',  // 公開された投稿のみ
         'posts_per_page' => 16,         // 最大16件の投稿を表示
         'orderby'        => "rand"      // ランダムな順序で投稿を取得
     ]);
@@ -94,7 +93,7 @@
                                         <!-- キャンペーン詳細情報の表示 -->
                                         <figcaption class="campaign-card__body">
                                             <!-- カスタムタクソノミー（カテゴリー）を表示 -->
-                                            <p class="campaign-card__tag"><span><?php the_terms(get_the_ID(), 'campaign_category'); ?></span></p>
+                                            <p class="campaign-card__tag"><span><?php the_terms(null, 'campaign_category'); ?></span></p>
                                             <!-- 投稿のタイトルを表示 -->
                                             <p class="campaign-card__title"><?php the_title(); ?></p>
                                             <!-- カスタムフィールドからキャンペーン価格情報を取得 -->
@@ -178,9 +177,7 @@
     // WordPressのカスタムクエリを設定し、ブログ投稿を取得
     $blog_query = new WP_Query([
         'post_type'      => 'post',    // 投稿タイプを'投稿'に指定
-        'post_status'    => 'publish', // 公開された投稿のみ
         'posts_per_page' => 3,         // 表示する投稿数
-        'order'          => 'DESC'     // 降順に並べる
     ]);
     // 投稿がある場合の処理
     if ($blog_query->have_posts()) : ?>
@@ -205,7 +202,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <div class="blog-card__body">
-                                    <time class="blog-card__date" datetime="<?php echo get_the_time('Y-m-d'); ?>"><?php echo get_the_time('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
+                                    <time class="blog-card__date" datetime="<?php the_time('c'); ?>"><?php the_time('Y.m.d'); ?></time><!-- 投稿の日付を'年.月.日'の形式で表示 -->
                                     <p class="blog-card__title"><?php the_title(); ?></p><!-- 投稿のタイトルを表示 -->
                                     <p class="blog-card__text"><?php echo wp_trim_words(get_the_content(), 80, '…'); ?></p><!-- 投稿の内容を80語まで表示し、それ以上は'…'で省略 -->
                                 </div>
@@ -226,7 +223,6 @@
     // カスタム投稿タイプ 'voice' から投稿を取得するためのクエリ設定
     $voice_query         = new WP_Query([
         'post_type'      => 'voice',    // カスタム投稿タイプ 'voice' を指定
-        'post_status'    => 'publish',  // 公開された投稿のみ取得
         'posts_per_page' => 2,          // 一度に表示する投稿数
         'orderby'        => "rand"      // 投稿をランダムに表示
     ]);

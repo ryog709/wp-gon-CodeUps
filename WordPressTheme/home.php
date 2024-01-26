@@ -17,10 +17,10 @@
 	<!-- blog -->
 	<section class="blog layout-blog">
 		<div class="blog__inner inner">
-			<div class="blog__menu-wrap blog-wrap">
-				<article class="blog__main-menu blog-main-menu">
-					<ul class="blog-main-menu__list blog-cards blog-cards--column">
-						<?php if (have_posts()) : ?>
+			<?php if (have_posts()) : ?>
+				<div class="blog__menu-wrap blog-wrap">
+					<article class="blog__main-menu blog-main-menu">
+						<ul class="blog-main-menu__list blog-cards blog-cards--column">
 							<?php while (have_posts()) : the_post(); ?>
 								<li class="blog-main-menu__list-card blog-card">
 									<!-- 各投稿へのリンク -->
@@ -35,7 +35,7 @@
 											<?php endif; ?>
 											<figcaption class="blog-card__body">
 												<!-- 投稿日 -->
-												<time class="blog-card__date" datetime="<?php echo get_the_time('Y-m-d'); ?>"><?php echo get_the_time('Y.m.d'); ?></time>
+												<time class="blog-card__date" datetime="<?php the_time('c'); ?>"><?php the_time('Y.m.d'); ?></time>
 												<!-- 投稿タイトル -->
 												<p class="blog-card__title"><?php the_title(); ?></p>
 												<!-- 投稿内容の一部 -->
@@ -44,23 +44,24 @@
 										</figure>
 									</a>
 								</li>
-								<!-- 各々の記事に関する処理 -->
-						<?php endwhile;
-						else :
-							// 投稿がない場合のメッセージを表示
-							echo '<p class="blog-cards__no-posts no-posts-text">投稿記事がありません。</p>';
-						endif; ?>
-					</ul>
+							<?php endwhile; ?>
+						</ul>
 
-					<!-- wp-pagenavi -->
-					<div class="blog__wp-pagenavi wp-pagenavi">
-						<?php wp_pagenavi(); ?>
+						<!-- wp-pagenavi -->
+						<div class="blog__wp-pagenavi">
+							<?php wp_pagenavi(); ?>
+						</div>
+					</article>
+
+					<!-- サイドバー -->
+					<div class="blog__side-menu">
+						<?php get_sidebar(); ?>
 					</div>
-				</article>
-
-				<!-- サイドバー -->
-				<?php get_sidebar(); ?>
-			</div>
+				</div>
+			<?php else : ?>
+				<!-- 投稿がない場合のメッセージを表示 -->
+				<p class="blog-cards__no-posts no-posts-text">投稿記事がありません。</p>
+			<?php endif; ?>
 		</div>
 	</section>
 	<?php get_footer(); ?>

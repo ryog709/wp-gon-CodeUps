@@ -2,7 +2,7 @@
 /*
 Template Name: お問い合わせ(送信完了)
 */
-get_header('wrap');
+get_header();
 ?>
 <main>
     <!-- sub-mv -->
@@ -28,4 +28,4 @@ get_header('wrap');
         </div>
     </div>
 
-    <?php get_footer('wrap'); ?>
+    <?php get_footer(); ?>

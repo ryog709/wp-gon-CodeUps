@@ -17,11 +17,13 @@
     <!-- faq -->
     <section class="faq layout-faq">
         <div class="faq__inner inner">
-            <ul class="faq__list faq-list">
-                <?php
-                // FAQの項目を取得する
-                $faq_items = SCF::get_option_meta('faq-options', 'faq');
-                if (!empty($faq_items)) :
+            <?php
+            // FAQの項目を取得する
+            $faq_items = SCF::get_option_meta('faq-options', 'faq');
+            if (!empty($faq_items)) :
+            ?>
+                <ul class="faq__list faq-list">
+                    <?php
                     // FAQの各項目に対して繰り返し処理を行う
                     foreach ($faq_items as $faq_item) :
                         // 質問と回答のテキストをエスケープ処理する
@@ -29,17 +31,23 @@
                         $answer = esc_html($faq_item['answer']);
                         // 質問と回答が空でない場合のみ表示する
                         if (!empty($question) && !empty($answer)) :
-                ?>
+                    ?>
                             <!-- FAQの項目をリスト表示する -->
                             <li class='faq-list__item'>
                                 <p class='faq-list__item-question js-faq-question'><?= $question ?></p>
                                 <p class='faq-list__item-answer'><?= $answer ?></p>
                             </li>
-                <?php endif;    // 空のチェック終了
+                    <?php
+                        endif;    // 空のチェック終了
                     endforeach; // FAQ項目の繰り返し終了
-                endif;          // FAQ項目の存在チェック終了
-                ?>
-            </ul>
+                    ?>
+                </ul>
+            <?php
+            else :
+                // FAQ項目が空の場合、「準備中です」と表示
+                echo '<p class="blog-cards__no-posts no-posts-text">準備中です</p>';
+            endif;          // FAQ項目の存在チェック終了
+            ?>
         </div>
     </section>
 

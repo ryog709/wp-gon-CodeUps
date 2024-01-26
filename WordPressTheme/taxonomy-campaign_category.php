@@ -47,6 +47,9 @@
 							<figure class="campaign-card__image">
 								<?php if (has_post_thumbnail()) : ?>
 									<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+								<?php else : ?>
+									<!-- サムネイルがない場合の代替画像 -->
+									<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="280" height="188" loading="lazy" />
 								<?php endif; ?>
 							</figure>
 							<div class="campaign-card__body-wrap">
@@ -110,7 +113,7 @@
 			</ul>
 
 			<!-- wp-pagenavi -->
-			<div class="campaign-card-contents__wp-pagenavi wp-pagenavi">
+			<div class="campaign-card-contents__wp-pagenavi">
 				<?php wp_pagenavi(); ?>
 			</div>
 		</div>
