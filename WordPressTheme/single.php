@@ -20,7 +20,7 @@
 		<div class="blog-detail__inner inner">
 			<div class="blog-detail__wrap blog-wrap">
 				<article class="blog-detail-main">
-					<time class="blog-detail-main__date" datetime="<?php echo get_the_time('Y-m-d'); ?>"><?php echo get_the_time('Y.m.d'); ?></time>
+					<time class="blog-detail-main__date" datetime="<?php the_time('c'); ?>"><?php the_time('Y.m.d'); ?></time>
 					<h2 class="blog-detail-main__title"><?php the_title(); ?></h2>
 					<div class="blog-detail-main__content">
 						<!-- 投稿があるかどうかをチェック -->
@@ -61,8 +61,10 @@
 					</div>
 				</article>
 
-				<!-- blog-side-menu -->
-				<?php get_sidebar(); ?>
+				<!-- サイドバー -->
+				<div class="blog__side-menu">
+					<?php get_sidebar(); ?>
+				</div>
 			</div>
 		</div>
 	</section>

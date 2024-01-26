@@ -19,7 +19,7 @@
 		<div class="tag__inner inner">
 			<ul class="tag__list tag-list">
 				<li class="tag-list__item tag-item is-color">
-					<a href="<?php echo get_post_type_archive_link('campaign') ?>">ALL</a>
+					<span>ALL</span>
 				</li>
 				<!-- 'campaign_category'のタクソノミー取得 -->
 				<?php $campaign_terms = get_terms('campaign_category', array('hide_empty' => false)) ?>
@@ -134,7 +134,7 @@
 			</ul>
 
 			<!-- wp-pagenavi -->
-			<div class="campaign-card-contents__wp-pagenavi wp-pagenavi">
+			<div class="campaign-card-contents__wp-pagenavi">
 				<?php wp_pagenavi(); ?>
 			</div>
 		</div>

@@ -33,39 +33,46 @@
             </div>
         </div>
     </article>
+    
     <!-- gallery -->
-    <section class="gallery layout-gallery">
-        <div class="gallery__inner inner">
-            <div class="gallery__title-wrap section-title">
-                <span class="section-title__sub">gallery</span>
-                <h2 class="section-title__main">フォト</h2>
-            </div>
-            <ul class="gallery__list gallery-list">
-                <?php
-                // オプションページ 'gallery-options' から繰り返しフィールド 'gallery' を取得
-                $gallery_items = SCF::get_option_meta('gallery-options', 'gallery');
-                if ($gallery_items) :
-                    foreach ($gallery_items as $gallery_item) :
-                        $image     = $gallery_item['gallery_img']; // 画像フィールド
-                        $image_url = wp_get_attachment_image_url($image, 'full'); // 画像のURL
-                        $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true); // ALTテキスト
-                ?>
+    <?php
+    // オプションページ 'gallery-options' から繰り返しフィールド 'gallery' を取得
+    $gallery_items = SCF::get_option_meta('gallery-options', 'gallery');
+    // ここで、カスタムフィールドからギャラリーのデータを取得
+    // 画像があるアイテムだけを集める
+    $valid_gallery_items = array_filter($gallery_items, function ($item) {
+        return !empty($item['gallery_img']);
+    });
+    // array_filterを使って、画像が実際に存在するアイテムだけを$valid_gallery_itemsに保存
+    // 画像があるアイテムが1つでもある場合にのみセクションを表示
+    if (!empty($valid_gallery_items)) : ?>
+        <section class="gallery layout-gallery">
+            <div class="gallery__inner inner">
+                <div class="gallery__title-wrap section-title">
+                    <span class="section-title__sub">gallery</span>
+                    <h2 class="section-title__main">フォト</h2>
+                </div>
+                <ul class="gallery__list gallery-list">
+                    <!-- ギャラリーリスト開始 -->
+                    <?php foreach ($valid_gallery_items as $gallery_item) : ?>
+                        <!-- 画像があるアイテムをループで表示 -->
+                        <?php
+                        $image = $gallery_item['gallery_img'];
+                        $image_url = wp_get_attachment_image_url($image, 'full');
+                        $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true);
+                        // 各画像アイテムのURLとALTテキストを取得
+                        ?>
                         <li class="gallery-list__item js-modal-open" data-target="<?php echo $image; ?>">
+                            <!-- 各画像アイテムをリストアイテムとして表示 -->
                             <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" />
                         </li>
-                <?php endforeach;
-                endif; ?>
-            </ul>
-            <!-- modal -->
-            <div class="gallery__modal gallery-modal">
-                <ul class="gallery-modal__list gallery-modal-list">
-                    <?php
-                    if ($gallery_items) :
-                        foreach ($gallery_items as $gallery_item) :
-                            $image     = $gallery_item['gallery_img']; // 画像フィールド
-                            $image_url = wp_get_attachment_image_url($image, 'full'); // 画像のURL
-                            $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true); // ALTテキスト
-                    ?>
+                    <?php endforeach; ?>
+                </ul>
+                <!-- modal -->
+                <div class="gallery__modal gallery-modal">
+                    <ul class="gallery-modal__list gallery-modal-list">
+                        <?php foreach ($valid_gallery_items as $gallery_item) : ?>
+                            <!-- 画像があるアイテムをループで表示 -->
                             <li class="gallery-modal-list__item modal js-modal" id="<?php echo $image; ?>">
                                 <div class="modal__inner">
                                     <figure class="modal__image">
@@ -73,11 +80,11 @@
                                     </figure>
                                 </div>
                             </li>
-                    <?php endforeach;
-                    endif; ?>
-                </ul>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    <?php endif; ?>
+    <?php wp_reset_postdata(); ?>
     <?php get_footer(); ?>

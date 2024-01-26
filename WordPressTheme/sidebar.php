@@ -1,5 +1,5 @@
 <!-- blog-side-menu -->
-<aside class="blog__side-menu blog-side-menu">
+<aside class="blog-side-menu">
 	<div class="blog-side-menu__inner">
 		<!-- 人気記事セクション -->
 		<div class="blog-side-menu__wrap blog-side-menu-popular">
@@ -24,7 +24,7 @@
 								<?php endif; ?>
 							</div>
 							<div class="popular-link__content">
-								<time class="popular-link__date" datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time>
+								<time class="popular-link__date" datetime="<?php the_time('c'); ?>"><?php the_time('Y.m.d'); ?></time>
 								<p class="popular-link__text"><?php the_title(); ?></p>
 							</div>
 						</a>

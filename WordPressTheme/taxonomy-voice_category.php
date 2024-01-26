@@ -38,8 +38,9 @@
 	<!-- campaign-card-contents -->
 	<section class="voice layout-voice">
 		<div class="voice__inner inner">
-			<ul class="voice__cards voice-cards">
-				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<?php if (have_posts()) : ?>
+				<ul class="voice__cards voice-cards">
+					<?php while (have_posts()) : the_post(); ?>
 						<li class="voice-cards__item voice-card">
 							<div class="voice-card__container">
 								<div class="voice-card__wrap">
@@ -82,14 +83,17 @@
 							<!-- カスタムフィールド 'voice_text' を表示 -->
 							<p class="voice-card__text"><?php the_field('voice_text'); ?></p>
 						</li>
-				<?php endwhile;
-				endif; ?>
-			</ul>
+					<?php endwhile; ?>
+				</ul>
 		</div>
 
 		<!-- wp-pagenavi -->
-		<div class="voice__wp-pagenavi wp-pagenavi">
+		<div class="voice__wp-pagenavi">
 			<?php wp_pagenavi(); ?>
 		</div>
+	<?php else : ?>
+		<!-- 投稿がない場合のメッセージを表示 -->
+		<p class="blog-cards__no-posts no-posts-text">投稿記事がありません。</p>
+	<?php endif; ?>
 	</section>
 	<?php get_footer(); ?>

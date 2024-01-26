@@ -26,7 +26,7 @@ $price_course3 = $price . '#price3';
 $price_course4 = $price . '#price4';
 ?>
 
-<?php if (!is_page('contact') && !is_page('contact/thanks')) : ?>
+<?php if (!is_page('contact') && !is_page('contact/thanks') && !is_404()) : ?>
     <!-- contact -->
     <section class="<?php echo is_front_page() ? 'contact layout-top-contact' : 'contact layout-contact'; ?>">
         <div class="contact__inner inner">
@@ -148,6 +148,7 @@ $price_course4 = $price . '#price4';
     </div>
     <small class="footer__copyright"> Copyright&nbsp;©&nbsp;2021&nbsp;-&nbsp;2023&nbsp;CodeUps&nbsp;LLC.&nbsp;All&nbsp;Rights&nbsp;Reserved. </small>
 </footer>
+</div>
 <?php wp_footer(); ?>
 </body>
 

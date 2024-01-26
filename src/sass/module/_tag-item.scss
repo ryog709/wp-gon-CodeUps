@@ -12,7 +12,8 @@
     background-color: $white;
 }
 
-.tag-item a {
+.tag-item a,
+.tag-item span {
     display: flex;
     align-items: center;
     justify-content: center;
