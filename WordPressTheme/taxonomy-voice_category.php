@@ -51,8 +51,8 @@
 										// 'voice_customer' が存在するかチェック
 										if ($voiceCustomer) :
 										?>
-											<!-- 年齢と性別を表示 -->
-											<p class="voice-card__customer"><?php echo $voiceCustomer['voice_age']; ?>(<?php echo $voiceCustomer['voice_gender']; ?>)</p>
+										<!-- 年齢と性別を表示 -->
+										<p class="voice-card__customer"><?php echo $voiceCustomer['voice_age']; ?>(<?php echo $voiceCustomer['voice_gender']; ?>)</p>
 										<?php endif; ?>
 										<!-- カテゴリーを表示 -->
 										<p class="voice-card__tag"><?php the_terms(get_the_ID(), 'voice_category'); ?></p>

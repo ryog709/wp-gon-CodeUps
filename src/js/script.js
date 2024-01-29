@@ -132,22 +132,48 @@ jQuery(function ($) {
         });
     });
 
-    // モーダルメニュー
+    // スクロールバーの幅を計算する関数
+    function getScrollbarWidth() {
+        // 外側のdivを作成し、スクロールバーを表示させる
+        const outer = document.createElement('div');
+        outer.style.visibility = 'hidden';
+        outer.style.overflow = 'scroll';
+        document.body.appendChild(outer);
+        // 内側のdivを作成
+        const inner = document.createElement('div');
+        outer.appendChild(inner);
+        // スクロールバーの幅を計算（外側の幅 - 内側の幅）
+        const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+        // 作成した要素を削除
+        outer.parentNode.removeChild(outer);
+        return scrollbarWidth;
+    }
+    // モーダルを開くイベントリスナー
     $(".js-modal-open").each(function () {
         $(this).on("click", function (e) {
             e.preventDefault();
-            var target = $(this).data("target");
-            var modal = document.getElementById(target);
+            const target = $(this).data("target");
+            const modal = document.getElementById(target);
+            const scrollbarWidth = getScrollbarWidth();
+            // スクロールバーの幅が0より大きい場合、bodyの右のpaddingに設定
+            if (scrollbarWidth > 0) {
+                $("body").css("padding-right", scrollbarWidth + "px");
+            }
+            // モーダルを表示
             $(modal).css({ display: "flex", opacity: 0 }).animate({ opacity: 1 }, 600);
-            $("html,body").css("overflow", "hidden");
+            $("html,body").css("overflow", "hidden"); // ページのスクロールを禁止
         });
     });
+    // モーダルを閉じるイベントリスナー
     $(".js-modal").on("click", function () {
         $(this).animate({ opacity: 0 }, 600, function () {
             $(this).css("display", "none");
+            // bodyのpaddingを元に戻し、スクロールを許可
+            $("body").css("padding-right", 0);
+            $("html,body").css("overflow", "auto");
         });
-        $("html,body").css("overflow", "initial");
     });
+
 
     // タブメニュー
     $(".js-tab-menu").on("click", function () {

@@ -47,15 +47,15 @@
 						// 前の投稿と次の投稿を取得
 						$prev_post = get_previous_post();
 						$next_post = get_next_post();
-						// 前の投稿がある場合、リンクを表示
-						if (!empty($prev_post)) {
-							$prev_post_url = get_permalink($prev_post->ID);
-							echo '<a class="pagenavi-prev" rel="prev" href="' . esc_url($prev_post_url) . '" aria-label="前のページへ"></a>';
-						}
 						// 次の投稿がある場合、リンクを表示
 						if (!empty($next_post)) {
 							$next_post_url = get_permalink($next_post->ID);
 							echo '<a class="pagenavi-next" rel="next" href="' . esc_url($next_post_url) . '" aria-label="次のページへ"></a>';
+						}
+						// 前の投稿がある場合、リンクを表示
+						if (!empty($prev_post)) {
+							$prev_post_url = get_permalink($prev_post->ID);
+							echo '<a class="pagenavi-prev" rel="prev" href="' . esc_url($prev_post_url) . '" aria-label="前のページへ"></a>';
 						}
 						?>
 					</div>

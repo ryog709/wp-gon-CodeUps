@@ -38,30 +38,41 @@
 		<div class="blog-side-menu__wrap blog-side-menu-review">
 			<h2 class="blog-side-menu-review__title side-menu-title">口コミ</h2>
 			<?php
+			// 最新の口コミを取得するためのクエリを設定
 			$latest_reviews      = new WP_Query(array(
-				'post_type' 	 => 'voice', // カスタム投稿タイプ
-				'posts_per_page' => 1         // 投稿数を設定
+				'post_type'      => 'voice', // 'voice'というカスタム投稿タイプを指定
+				'posts_per_page' => 1        // 1つの投稿のみ取得
 			));
-
+			// クエリが投稿を持っている場合
 			if ($latest_reviews->have_posts()) :
+				// 投稿がある間ループ
 				while ($latest_reviews->have_posts()) : $latest_reviews->the_post();
+					// カスタムフィールドから顧客情報を取得
 					$voiceCustomer = get_field('voice_customer');
 			?>
 					<figure class="blog-side-menu-review__image">
 						<?php if (has_post_thumbnail()) : ?>
+							<!-- 投稿のサムネイル画像があれば表示 -->
 							<img src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="294" height="218" loading="lazy" />
+						<?php else : ?>
+							<!-- サムネイルがない場合の代替画像 -->
+							<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="294" height="218" loading="lazy" />
 						<?php endif; ?>
 						<figcaption class="blog-side-menu-review__content">
 							<?php if ($voiceCustomer) : ?>
+								<!-- 顧客の年齢と性別を表示 -->
 								<p class="blog-side-menu-review__sub-head"><?php echo $voiceCustomer['voice_age']; ?>(<?php echo $voiceCustomer['voice_gender']; ?>)</p>
 							<?php endif; ?>
+							<!-- 投稿のタイトルを表示 -->
 							<p class="blog-side-menu-review__text"><?php the_title(); ?></p>
 						</figcaption>
 					</figure>
 					<div class="blog-side-menu-review__button">
 						<a href="<?php echo esc_url(home_url('/voice/')); ?>" class="button">View more<span></span></a>
 					</div>
-			<?php endwhile;
+			<?php
+				endwhile;
+				// ポストデータをリセット
 				wp_reset_postdata();
 			endif; ?>
 		</div>
@@ -86,11 +97,15 @@
 						<div class="blog-side-menu-card__image">
 							<?php if (has_post_thumbnail()) : ?>
 								<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" width="280" height="188" loading="lazy" />
+							<?php else : ?>
+								<!-- サムネイルがない場合の代替画像 -->
+								<img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="151" height="117" loading="lazy" />
 							<?php endif; ?>
 						</div>
 						<figcaption class="blog-side-menu-card__body">
 							<p class="blog-side-menu-card__title"><?php the_title(); ?></p>
 							<?php if ($campaignPrice) : ?>
+								<!-- キャンペーン価格情報が存在する場合、それを表示します。 -->
 								<p class="blog-side-menu-card__text"><?php echo $campaignPrice['campaign_text']; ?></p>
 								<div class="blog-side-menu-card__price-wrap">
 									<div class="blog-side-menu-card__price-sub"><span><?php echo $campaignPrice['normal_price']; ?></span></div>
