@@ -90,7 +90,6 @@
                                                 <img class="noimage" src="<?php echo get_template_directory_uri(); ?>/assets/images/common/noimage.webp" alt="noimage" width="280" height="188" loading="lazy" />
                                             <?php endif; ?>
                                         </div>
-                                        <!-- キャンペーン詳細情報の表示 -->
                                         <figcaption class="campaign-card__body">
                                             <!-- カスタムタクソノミー（カテゴリー）を表示 -->
                                             <p class="campaign-card__tag"><span><?php the_terms(null, 'campaign_category'); ?></span></p>
@@ -175,7 +174,7 @@
     <!-- top-blog -->
     <?php
     // WordPressのカスタムクエリを設定し、ブログ投稿を取得
-    $blog_query = new WP_Query([
+    $blog_query          = new WP_Query([
         'post_type'      => 'post',    // 投稿タイプを'投稿'に指定
         'posts_per_page' => 3,         // 表示する投稿数
     ]);
@@ -281,60 +280,66 @@
     wp_reset_postdata(); ?>
 
     <!-- top-price -->
-    <section class="top-price layout-top-price">
-        <div class="top-price__inner inner">
-            <div class="top-price__title-wrap section-title">
-                <span class="section-title__sub">price</span>
-                <h2 class="section-title__main">料金一覧</h2>
-            </div>
-            <div class="top-price__container">
-                <div class="top-price__block">
-                    <?php
-                    // 価格プランのデータを取得し処理する部分
-                    $all_plans = SCF::get_option_meta('price-options');
-                    $plans = [];
-                    // 各プランをループで処理
-                    foreach ($all_plans as $key => $value) {
-                        // プランのIDを抽出
-                        if (preg_match('/^price_course_([0-9]+)$/', $key, $matches)) {
-                            $plan_id = $matches[1];
-                            // プランの詳細情報を配列に格納
-                            $plans[$plan_id]   = [
-                                'title'        => $value,
-                                'group'        => 'price-' . $plan_id,
-                                'course_array' => ['course_' . $plan_id, 'sp-course_' . $plan_id, 'price_' . $plan_id]
-                            ];
-                        }
-                    }
-                    // 各プランの価格情報を表示
-                    foreach ($plans as $plan_id => $plan) {
-                        $price_group = SCF::get_option_meta('price-options', $plan['group']);
-                        if (!empty($price_group)) {
-                            echo '<div class="top-price__list-wrap">';
-                            echo '<p class="top-price__list-title">' . $plan['title'] . '</p>';
-                            echo '<dl class="top-price__list">';
-                            // 各価格情報をリストとして出力
-                            foreach ($price_group as $item) {
-                                echo '<div class="top-price__list-item">';
-                                echo '<dt class="top-price__list-menu">' .  $item[$plan['course_array'][0]] . $item[$plan['course_array'][1]] . '</dt>';
-                                echo '<dd class="top-price__list-price">' . $item[$plan['course_array'][2]] . '</dd>';
-                                echo '</div>';
-                            }
-                            echo '</dl>';
-                            echo '</div>';
-                        }
-                    }
-                    ?>
+    <?php
+    $all_plans = SCF::get_option_meta('price-options');
+    // 価格プランのデータが存在する場合のみセクションを表示
+    if (!empty($all_plans)) :
+    ?>
+        <section class="top-price layout-top-price">
+            <div class="top-price__inner inner">
+                <div class="top-price__title-wrap section-title">
+                    <span class="section-title__sub">price</span>
+                    <h2 class="section-title__main">料金一覧</h2>
                 </div>
-                <picture class="top-price__image colorbox js-colorbox">
-                    <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-pc01.webp" media="(min-width: 768px)" type="image/webp" width="492" height="746" />
-                    <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-sp01.webp" alt="海を漂う海亀" width="345" height="227" loading="lazy" />
-                </picture>
+                <div class="top-price__container">
+                    <div class="top-price__block">
+                        <?php
+                        $plans = [];
+                        // 各プランをループで処理
+                        foreach ($all_plans as $key => $value) {
+                            // プランのIDを抽出
+                            if (preg_match('/^price_course_([0-9]+)$/', $key, $matches)) {
+                                $plan_id = $matches[1];
+                                // プランの詳細情報を配列に格納
+                                $plans[$plan_id] = [
+                                    'title'        => $value,
+                                    'group'        => 'price-' . $plan_id,
+                                    'course_array' => ['course_' . $plan_id, 'sp-course_' . $plan_id, 'price_' . $plan_id]
+                                ];
+                            }
+                        }
+                        // 各プランの価格情報を表示
+                        foreach ($plans as $plan_id => $plan) {
+                            $price_group = SCF::get_option_meta('price-options', $plan['group']);
+                            if (!empty($price_group)) {
+                        ?>
+                                <div class="top-price__list-wrap">
+                                    <p class="top-price__list-title"><?php echo $plan['title']; ?></p>
+                                    <dl class="top-price__list">
+                                        <!-- 各価格情報をリストとして出力 -->
+                                        <?php foreach ($price_group as $item) { ?>
+                                            <div class="top-price__list-item">
+                                                <dt class="top-price__list-menu"><?php echo $item[$plan['course_array'][0]] . $item[$plan['course_array'][1]]; ?></dt>
+                                                <dd class="top-price__list-price"><?php echo $item[$plan['course_array'][2]]; ?></dd>
+                                            </div>
+                                        <?php } ?>
+                                    </dl>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
+                    <picture class="top-price__image colorbox js-colorbox">
+                        <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-pc01.webp" media="(min-width: 768px)" type="image/webp" width="492" height="746" />
+                        <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/price-sp01.webp" alt="海を漂う海亀" width="345" height="227" loading="lazy" />
+                    </picture>
+                </div>
+                <div class="top-price__button">
+                    <a href="<?php echo esc_url(home_url('/price/')); ?>" class="button">View more<span></span></a>
+                </div>
             </div>
-            <div class="top-price__button">
-                <a href="<?php echo esc_url(home_url('/price/')); ?>" class="button">View more<span></span></a>
-            </div>
-        </div>
-    </section>
+        </section>
+    <?php endif; ?>
 
     <?php get_footer(); ?>

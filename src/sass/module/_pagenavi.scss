@@ -37,13 +37,13 @@
 }
 
 .pagenavi-prev::before {
-    margin-left:  rem(5);
-    transform: rotate(220deg);
+    margin-right:  rem(5);
+    transform: rotate(45deg);
 }
 
 .pagenavi-next::before {
-    margin-right:  rem(5);
-    transform: rotate(45deg);
+    margin-left:  rem(5);
+    transform: rotate(220deg);
 }
 
 .pagenavi a:hover {

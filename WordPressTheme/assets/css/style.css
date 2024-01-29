@@ -1747,7 +1747,6 @@ textarea.wpcf7-not-valid,
 	position: fixed;
 	right: 0;
 	top: 0;
-	z-index: 1000;
 }
 
 .gallery__inner {
@@ -2275,7 +2274,7 @@ textarea.wpcf7-not-valid,
 	aspect-ratio: 492/746;
 	margin-left: auto;
 	margin-right: auto;
-	width: min(100%, 34.375rem);
+	width: min(100%, 28.125rem);
 }
 
 .no-posts-text {
@@ -2432,13 +2431,13 @@ textarea.wpcf7-not-valid,
 }
 
 .pagenavi-prev::before {
-	margin-left: 0.3125rem;
-	transform: rotate(220deg);
+	margin-right: 0.3125rem;
+	transform: rotate(45deg);
 }
 
 .pagenavi-next::before {
-	margin-right: 0.3125rem;
-	transform: rotate(45deg);
+	margin-left: 0.3125rem;
+	transform: rotate(220deg);
 }
 
 .pagenavi a:hover {
